@@ -843,20 +843,17 @@ Setiap milestone dianggap selesai apabila:
 
 ---
 
-## 24. Dokumen Lanjutan
+## 24. Urutan Dokumen dan Gate
 
-Setelah PRD divalidasi, dokumen berikut dibuat secara berurutan:
+Artefak produk dan frontend dibuat serta disetujui secara berurutan:
 
-1. `USER_FLOWS.md`
-2. `SCREEN_MAP.md`
-3. `WIREFRAMES.md` atau file desain wireframe
-4. `DESIGN_SYSTEM.md`
-5. `DATA_CONTRACTS.md`
-6. `DATA_MODEL.md`
-7. `SECURITY.md`
-8. `TESTING.md`
-9. `AGENTS.md`
-10. File milestone `F01` sampai `F11`
+1. `PRD.md`
+2. `USER_FLOWS.md`
+3. `SCREEN_MAP.md`
+4. `WIREFRAMES.md` atau file desain wireframe
+5. `DESIGN_SYSTEM.md`
+6. Frontend melalui file milestone `F01` sampai `F11`
 
-PRD ini menjadi sumber keputusan produk. Dokumen arsitektur dan implementasi tidak boleh diam-diam mengubah requirement produk tanpa memperbarui PRD atau mencatat keputusan melalui ADR.
+`AGENTS.md` adalah aturan kerja repository dan dibuat pada tahap fondasi dokumentasi. Dokumen pendukung `DATA_CONTRACTS.md`, `DATA_MODEL.md`, `SECURITY.md`, dan `TESTING.md` disiapkan sebelum implementasi backend atau integrasi terkait. Dokumen pendukung tersebut tidak mengizinkan tahap wireframe dilewati.
 
+Kode aplikasi tidak boleh ditulis sebelum wireframe disetujui. PRD ini menjadi sumber keputusan produk. Dokumen arsitektur dan implementasi tidak boleh diam-diam mengubah requirement produk tanpa memperbarui PRD atau mencatat keputusan melalui ADR.

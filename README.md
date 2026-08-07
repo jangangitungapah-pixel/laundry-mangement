@@ -7,18 +7,18 @@ LaundryKita adalah SaaS multi-tenant untuk operasional laundry kecil dan menenga
 | Gate | Status |
 | --- | --- |
 | Documentation baseline | `PASSED` — PRD 1.0 dan keputusan baseline telah disetujui |
-| Low-fidelity wireframes | Belum dimulai |
+| Low-fidelity wireframes | `READY_FOR_APPROVAL` — spesifikasi dan prototype statis siap ditinjau |
 | Design system | Belum dimulai |
 | Frontend | Belum dimulai |
 | Backend/integrasi | Belum dimulai |
 
-Repository saat ini hanya berisi dokumentasi. Tidak ada scaffold, dependency, wireframe, design system, atau kode aplikasi.
+Repository saat ini berisi dokumentasi dan prototype low-fidelity statis sebagai artefak desain. Tidak ada scaffold, dependency, design system, atau kode aplikasi production.
 
 ## Urutan kerja
 
 `PRD Final -> Product Baseline -> Domain Rules -> Permissions -> User Flows -> Screen Map -> Wireframes -> Design System -> Frontend`
 
-Tahap berikutnya adalah low-fidelity wireframes berdasarkan dokumen yang sudah disetujui. Baca [`AGENTS.md`](AGENTS.md) sebelum melakukan perubahan apa pun.
+Tahap berikutnya adalah approval Product Owner atas low-fidelity wireframes. Baca [`AGENTS.md`](AGENTS.md) sebelum melakukan perubahan apa pun.
 
 ## Indeks dan sumber kebenaran
 
@@ -30,10 +30,13 @@ Tahap berikutnya adalah low-fidelity wireframes berdasarkan dokumen yang sudah d
 | Role, capability, tenant/outlet scope, denied/read-only | [`docs/ROLE_PERMISSION_MATRIX.md`](docs/ROLE_PERMISSION_MATRIX.md) | Aturan akses tunggal |
 | Urutan interaksi pengguna | [`docs/USER_FLOWS.md`](docs/USER_FLOWS.md) | Flow final dan edge case |
 | Route, data, action, serta screen state | [`docs/SCREEN_MAP.md`](docs/SCREEN_MAP.md) | Kontrak layar final |
+| Spesifikasi hierarchy, shell, layout, responsive, dan overlay | [`docs/WIREFRAMES.md`](docs/WIREFRAMES.md) | Sumber kanonis low-fidelity wireframe |
+| Prototype klik low-fidelity | [`design/wireframes/README.md`](design/wireframes/README.md) | Cara membuka dan menjalankan 41 route serta happy path |
+| Bukti coverage dan validasi wireframe | [`docs/WIREFRAME_AUDIT.md`](docs/WIREFRAME_AUDIT.md) | Audit kesiapan approval wireframe |
 | Histori dan alasan keputusan | [`docs/OPEN_DECISIONS.md`](docs/OPEN_DECISIONS.md) | Product Decision Register |
 | Urutan implementasi dan gate | [`docs/DELIVERY_PLAN.md`](docs/DELIVERY_PLAN.md) | Roadmap delivery |
 | Bukti approval preparation gate | [`docs/P0_DECISION_PACK.md`](docs/P0_DECISION_PACK.md) | Receipt, bukan sumber aturan |
 
 ## Gate berikutnya
 
-Wireframe hanya boleh dimulai dari route dan flow final. Wireframe harus low-fidelity, mencakup desktop/mobile serta loading, empty, error, permission-denied, dan read-only state, dan tidak boleh mengubah scope, formula, state, capability, atau route tanpa perubahan dokumen kanonis lebih dahulu.
+Product Owner perlu meninjau hierarchy, navigasi, konteks outlet, primary action, critical overlay, responsive behavior, dan happy path pada prototype low-fidelity. Status wireframe tidak boleh dinaikkan menjadi `PASSED` sebelum approval eksplisit; design system dan frontend tetap belum boleh dimulai.

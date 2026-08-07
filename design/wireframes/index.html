@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>LaundryKita — Prototype Wireframe</title>
+  <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+  <a class="skip-link" href="#screen">Lewati ke layar</a>
+
+  <header class="prototype-bar" aria-label="Toolbar prototype">
+    <div class="prototype-brand">
+      <span class="prototype-mark" aria-hidden="true">LK</span>
+      <span><strong>LaundryKita</strong><small>LOW-FIDELITY · BUKAN SOURCE APLIKASI</small></span>
+    </div>
+    <div class="prototype-tools">
+      <button class="button button-quiet mobile-only" id="toggleControls" type="button" aria-expanded="false" aria-controls="controlPanel">Kontrol</button>
+      <button class="button button-quiet" id="openScenarios" type="button" aria-expanded="false" aria-controls="scenarioDrawer">Skenario <span aria-hidden="true">→</span></button>
+    </div>
+  </header>
+
+  <div class="prototype-layout">
+    <aside class="control-panel" id="controlPanel" aria-label="Kontrol simulasi wireframe">
+      <div class="panel-heading">
+        <div><span class="eyebrow">CONTROL PANEL</span><h2>Simulasi</h2></div>
+        <button class="icon-button mobile-only" id="closeControls" type="button" aria-label="Tutup kontrol">×</button>
+      </div>
+      <p class="muted small">Pilihan hanya mengubah representasi visual. Aturan kanonis tidak berubah.</p>
+
+      <label for="personaSelect">Persona</label>
+      <select id="personaSelect">
+        <option>Public</option>
+        <option selected>Owner</option>
+        <option>Admin</option>
+        <option>Cashier</option>
+        <option>Operator</option>
+        <option>Super Admin</option>
+      </select>
+
+      <label for="outletSelect">Konteks outlet</label>
+      <select id="outletSelect">
+        <option selected>Outlet Sudirman</option>
+        <option>Outlet Kemang</option>
+        <option>Semua outlet</option>
+      </select>
+      <p id="outletHint" class="field-hint">Satu outlet aktif untuk mutasi operasional.</p>
+
+      <label for="subscriptionSelect">Subscription</label>
+      <select id="subscriptionSelect">
+        <option>TRIALING</option>
+        <option selected>ACTIVE</option>
+        <option>PAST_DUE</option>
+        <option>SUSPENDED</option>
+        <option>CANCELED</option>
+      </select>
+
+      <label for="screenStateSelect">Screen state</label>
+      <select id="screenStateSelect">
+        <option selected>Default</option>
+        <option>Loading</option>
+        <option>Empty</option>
+        <option>Error</option>
+        <option>Permission denied</option>
+        <option>Read-only</option>
+        <option>Success</option>
+      </select>
+
+      <div class="control-meta" aria-live="polite">
+        <span id="routeCount">41/41 route</span>
+        <span id="flowCount">UF-01–UF-12</span>
+      </div>
+      <button class="button button-secondary full-width" id="showRouteIndex" type="button">Indeks 41 route</button>
+    </aside>
+
+    <section class="frame" aria-label="Viewport aplikasi simulasi">
+      <header class="app-topbar" id="appTopbar">
+        <button class="icon-button app-menu-button" id="toggleNav" type="button" aria-expanded="false" aria-controls="routeNav" aria-label="Buka navigasi">☰</button>
+        <a class="app-wordmark" href="#/" aria-label="Beranda prototype">LAUNDRY<span>KITA</span></a>
+        <div class="context-strip" id="contextStrip" aria-label="Konteks aktif"></div>
+        <div class="session-strip" id="sessionStrip"></div>
+      </header>
+
+      <div class="app-layout">
+        <nav class="route-nav" id="routeNav" aria-label="Navigasi route"></nav>
+        <main class="screen" id="screen" tabindex="-1"></main>
+      </div>
+
+      <nav class="mobile-nav" id="mobileNav" aria-label="Navigasi utama mobile"></nav>
+    </section>
+  </div>
+
+  <aside class="scenario-drawer" id="scenarioDrawer" aria-label="Happy path prototype" aria-hidden="true">
+    <div class="panel-heading">
+      <div><span class="eyebrow">18 HAPPY PATH</span><h2>Jalankan skenario</h2></div>
+      <button class="icon-button" id="closeScenarios" type="button" aria-label="Tutup skenario">×</button>
+    </div>
+    <div id="scenarioList"></div>
+  </aside>
+  <div class="backdrop" id="drawerBackdrop" hidden></div>
+
+  <section class="scenario-runner" id="scenarioRunner" aria-live="polite" hidden>
+    <div>
+      <span class="eyebrow" id="scenarioCounter">SKENARIO</span>
+      <strong id="scenarioTitle"></strong>
+      <span class="muted small" id="scenarioStep"></span>
+    </div>
+    <div class="runner-actions">
+      <button class="button button-quiet" id="scenarioPrev" type="button">← Sebelumnya</button>
+      <button class="button button-primary" id="scenarioNext" type="button">Berikutnya →</button>
+      <button class="icon-button" id="scenarioStop" type="button" aria-label="Hentikan skenario">×</button>
+    </div>
+  </section>
+
+  <dialog class="overlay-dialog" id="overlayDialog" aria-labelledby="overlayTitle">
+    <form method="dialog" class="overlay-card" id="overlayContent"></form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="prototype.js"></script>
+</body>
+</html>

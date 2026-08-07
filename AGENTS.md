@@ -10,6 +10,7 @@
 6. `docs/USER_FLOWS.md` — urutan interaksi dan edge case.
 7. `docs/SCREEN_MAP.md` — route, data, action, dan screen state.
 8. `docs/DELIVERY_PLAN.md` — urutan delivery dan gate.
+9. `docs/PROJECT_SETUP.md` — runtime, tooling, script, environment, testing, dan batas project foundation.
 
 Jika dua dokumen berbeda, hentikan pekerjaan pada area tersebut dan sinkronkan sumber kanonis terkait. Jangan memilih interpretasi secara diam-diam.
 
@@ -19,7 +20,9 @@ Jika dua dokumen berbeda, hentikan pekerjaan pada area tersebut dan sinkronkan s
 
 - Setiap tahap memakai output tahap sebelumnya dan tidak mendefinisikan ulang aturan.
 - Strategi frontend-first memakai feature service/repository contract dan mock adapter yang dapat diganti adapter backend.
-- Jangan menulis kode aplikasi sebelum low-fidelity wireframe disetujui eksplisit.
+- Setelah documentation gate `PASSED`, project foundation yang hanya berisi tooling, konfigurasi, provider kosong, satu placeholder route netral, test harness, dan CI boleh dikerjakan sebelum atau paralel dengan wireframe.
+- Project foundation bukan dimulainya fase fitur frontend. Sebelum wireframe dan design system disetujui, dilarang membuat production screen, design component, route produk, fixture produk, atau implementasi fitur.
+- Jangan menulis kode aplikasi selain batas project foundation tersebut sebelum low-fidelity wireframe disetujui eksplisit; implementasi UI tetap menunggu design-system gate.
 - Backend dan integrasi mengikuti vertical slice setelah frontend terkait tervalidasi; multi-tenancy tidak boleh ditunda sebagai retrofit.
 
 ## Batas scope
@@ -44,6 +47,13 @@ Jika dua dokumen berbeda, hentikan pekerjaan pada area tersebut dan sinkronkan s
 - Scope, istilah, role, state, route, capability, formula, serta asumsi pilot konsisten.
 - Audit tidak menemukan placeholder keputusan, pertanyaan produk yang belum diselesaikan, atau fitur di luar scope.
 - `git diff --check` lulus dan repository tetap documentation-only sampai gate berikutnya.
+
+### Project foundation
+
+- Documentation gate telah `PASSED`; fondasi hanya memuat Vite, React, TypeScript strict, dependency minimal yang disetujui, router/provider kosong, environment validation, test harness, dan CI.
+- Lint, typecheck, test, format check, build, dan audit dependency dijalankan; package lock tersedia dan tidak ada secret.
+- Tidak ada production screen, design component, route produk, fixture produk, implementasi fitur, request API, authentication, atau business logic.
+- Scaffold tidak mengubah status wireframe, design system, maupun frontend feature gate.
 
 ### Wireframe
 

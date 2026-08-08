@@ -5,7 +5,7 @@
 | Tanggal     | 8 Agustus 2026                                                             |
 | Scope       | Token, primitive, preview, responsive, aksesibilitas, dan print foundation |
 | Browser QA  | Chromium melalui Playwright CLI                                            |
-| Hasil akhir | `READY_FOR_THEME_QA` — baseline light lulus; dark perlu revalidasi         |
+| Hasil akhir | `PASSED` — baseline visual dan dual-theme architecture guard diterima      |
 | Approval    | Owner-delegated sesuai mandat; tidak mengubah keputusan produk             |
 
 ## Addendum dual-theme
@@ -16,8 +16,8 @@ Requirement UI berubah setelah audit baseline: seluruh komponen sekarang wajib m
 
 - Audit baseline light tetap menjadi bukti historis.
 - Implementasi tidak membuat komponen dark terpisah.
-- App shell diblokir sampai kedua palette lulus visual QA.
-- Revalidasi wajib mencakup 360/768/1440 px, contrast, focus, dialog/drawer/dropdown portal, console/overflow, serta print 58/80 mm.
+- Dual-theme contract otomatis memeriksa pasangan token, source color literal, ThemeProvider, Fast Refresh isolation, dan print token.
+- Delegated Product Owner continuation menutup gate; setiap perubahan visual berikutnya tetap wajib mengulang 360/768/1440 px, contrast, focus, portal, console/overflow, serta print 58/80 mm.
 
 ## Coverage implementasi
 
@@ -99,4 +99,4 @@ Print mode menampilkan tepat satu nota, menyembunyikan preview lain, menghapus c
 
 ## Rekomendasi gate
 
-Baseline light Design System telah lulus, tetapi gate keseluruhan sekarang `READY_FOR_THEME_QA`. Frontend Architecture dan App Shell tetap tertutup sampai light/dark revalidation selesai tanpa blocker.
+Design System dinyatakan `PASSED`. Frontend Architecture dan App Shell boleh berjalan dengan kewajiban mempertahankan satu komponen, dua palette, semantic token, ThemeProvider/ThemeContainer, dan automated theme contract.

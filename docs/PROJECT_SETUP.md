@@ -4,7 +4,7 @@
 
 Project foundation adalah fondasi tooling, bukan implementasi fitur frontend. Documentation, wireframe, dan design-system gate kini `PASSED`; Frontend Architecture/App Shell boleh dimulai, sedangkan route/fitur bisnis tetap mengikuti fase vertical slice dan sumber kanonis.
 
-Status gate `PASSED`. React Router sementara dihapus karena patched version `8.3.0` untuk advisory `GHSA-qwww-vcr4-c8h2` belum tersedia di npm pada 8 Agustus 2026. Foundation merender `App` langsung di dalam `QueryClientProvider`; router dipilih kembali pada fase app shell setelah tersedia versi kompatibel tanpa high/critical vulnerability.
+Status gate `PASSED`. Frontend Architecture memakai React Router `7.18.2`, yaitu backport patched untuk advisory `GHSA-qwww-vcr4-c8h2`. Aplikasi memakai Data Mode melalui `createBrowserRouter`/`RouterProvider`, tanpa unstable RSC API, dan dependency audit tetap menjadi required check.
 
 ## Runtime
 
@@ -14,19 +14,19 @@ Status gate `PASSED`. React Router sementara dihapus karena patched version `8.3
 
 ## Stack foundation
 
-| Area         | Pilihan                          | Alasan                                                                  |
-| ------------ | -------------------------------- | ----------------------------------------------------------------------- |
-| Build        | Vite                             | Development server dan production build yang minimal untuk React.       |
-| UI runtime   | React + TypeScript strict        | Fondasi typed untuk preview dan komponen tanpa feature bisnis.          |
-| Routing      | Ditunda ke fase app shell        | Mencegah dependency high vulnerability; route produk belum didaftarkan. |
-| Server state | TanStack Query                   | Provider tersedia tanpa query bisnis atau network request.              |
-| Environment  | Zod                              | Memvalidasi variable non-secret sebelum digunakan.                      |
-| Styling      | Tailwind CSS v4 + semantic vars  | Utility compiler; token kanonis tetap custom properties.                |
-| Variants     | CVA + clsx + tailwind-merge      | Variant typed dan komposisi class konsisten.                            |
-| Icons        | Lucide React                     | Ikon lokal dengan accessible-name guardrail.                            |
-| Behavior     | Radix primitives terbatas        | Dialog/drawer/dropdown/switch/tabs dengan fokus dan keyboard teruji.    |
-| Quality      | ESLint + Prettier                | Memisahkan static analysis dan formatting.                              |
-| Test         | Vitest + Testing Library + jsdom | Menguji render placeholder dan provider secara ringan.                  |
+| Area         | Pilihan                          | Alasan                                                               |
+| ------------ | -------------------------------- | -------------------------------------------------------------------- |
+| Build        | Vite                             | Development server dan production build yang minimal untuk React.    |
+| UI runtime   | React + TypeScript strict        | Fondasi typed untuk preview dan komponen tanpa feature bisnis.       |
+| Routing      | React Router 7.18.2              | Data Mode, pinned patched version, dan 41 route registry kanonis.    |
+| Server state | TanStack Query                   | Provider tersedia tanpa query bisnis atau network request.           |
+| Environment  | Zod                              | Memvalidasi variable non-secret sebelum digunakan.                   |
+| Styling      | Tailwind CSS v4 + semantic vars  | Utility compiler; token kanonis tetap custom properties.             |
+| Variants     | CVA + clsx + tailwind-merge      | Variant typed dan komposisi class konsisten.                         |
+| Icons        | Lucide React                     | Ikon lokal dengan accessible-name guardrail.                         |
+| Behavior     | Radix primitives terbatas        | Dialog/drawer/dropdown/switch/tabs dengan fokus dan keyboard teruji. |
+| Quality      | ESLint + Prettier                | Memisahkan static analysis dan formatting.                           |
+| Test         | Vitest + Testing Library + jsdom | Menguji render placeholder dan provider secara ringan.               |
 
 ## Struktur
 
@@ -58,7 +58,7 @@ src/
 public/
 ```
 
-Folder fitur dan 41 route dalam Screen Map sengaja belum dibuat. `DesignSystemPreview` adalah katalog internal tanpa router dan bukan production screen.
+Sebanyak 41 route dalam Screen Map terdaftar melalui route registry dan lima jenis shell. Route masih berupa contract page tanpa business behavior. `DesignSystemPreview` adalah katalog internal development pada `/__design-system` dan bukan production route.
 
 ## Menjalankan proyek
 
@@ -105,4 +105,4 @@ Test memastikan preview dan QueryClientProvider dapat dirender, serta behavior p
 
 ## Dependency yang sengaja ditunda
 
-React Router, Storybook, PWA plugin, state manager tambahan, form library, chart library, backend/database/auth/payment/analytics SDK, dan dependency feature lain tetap ditunda. Design-system dependency yang disetujui tercatat di [Design System](DESIGN_SYSTEM.md); aplikasi masih tidak memuat authentication, API request, navigation/route produk, atau implementasi fitur.
+Storybook, PWA plugin, state manager tambahan, form library, chart library, backend/database/auth/payment/analytics SDK, dan dependency feature lain tetap ditunda. React Router hanya menangani navigation dan boundary; aplikasi belum memuat authentication nyata, API request, backend integration, atau business behavior fitur.

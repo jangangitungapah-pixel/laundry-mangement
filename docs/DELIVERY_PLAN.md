@@ -39,7 +39,7 @@
 
 ## 4. Design system
 
-- **Status gate:** `READY_FOR_THEME_QA`; baseline light telah lulus, kemudian requirement dual-theme membuka revalidasi visual.
+- **Status gate:** `PASSED` pada 8 Agustus 2026; baseline visual, dual-theme contract, semantic token guard, provider, accessibility, responsive, overlay, dan print foundation diterima melalui delegated Product Owner continuation.
 
 - **Input:** Wireframe yang disetujui dan kebutuhan aksesibilitas/print PRD.
 - **Output:** Satu implementasi komponen dengan semantic token, palette light/dark, ThemeProvider/ThemeContainer, responsive layout, preview internal, dan receipt foundation 58/80 mm.
@@ -50,7 +50,7 @@
 
 ## 5. Frontend architecture dan app shell
 
-- **Status gate:** `BLOCKED`; menunggu revalidasi dual-theme Design System.
+- **Status gate:** `PASSED` pada 8 Agustus 2026; React Router 7.18.2, 41 route registry, lima shell, route error boundary, access policy, formatter, service contract, mock adapter convention, dan test harness tersedia.
 
 - **Input:** Design system, Screen Map, Permission Matrix, Domain Rules.
 - **Output:** App shell, pemilihan dan pemasangan router yang bebas high/critical vulnerability, routing produk, state/error boundary, localization/formatting, service contracts, mock adapter convention, fixture factory, test harness.

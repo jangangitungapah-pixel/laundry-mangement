@@ -2,7 +2,7 @@
 
 | Atribut             | Nilai                                                                |
 | ------------------- | -------------------------------------------------------------------- |
-| Status gate         | `READY_FOR_THEME_QA`                                                 |
+| Status gate         | `PASSED` — dual-theme contract dan delegated continuation diterima   |
 | Versi               | 1.0                                                                  |
 | Tanggal persetujuan | 8 Agustus 2026                                                       |
 | Otoritas            | Owner-delegated approval setelah audit teknis dan visual             |

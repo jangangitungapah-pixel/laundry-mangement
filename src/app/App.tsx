@@ -1,5 +1,5 @@
-import { DesignSystemPreview } from '@/app/DesignSystemPreview'
+import { AppRouter } from '@/app/router'
 
 export function App() {
-  return <DesignSystemPreview />
+  return <AppRouter />
 }

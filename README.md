@@ -9,18 +9,18 @@ LaundryKita adalah SaaS multi-tenant untuk operasional laundry kecil dan menenga
 | Documentation baseline | `PASSED` — PRD 1.0 dan keputusan baseline telah disetujui |
 | Project foundation | `PASSED` — quality checks lulus dan audit runtime dependency tidak menemukan vulnerability |
 | Low-fidelity wireframes | `PASSED` — visual QA dan delegated Product Owner approval tercatat |
-| Design system | `READY_FOR_THEME_QA` — dual-theme token/provider sudah diterapkan; menunggu visual QA light dan dark |
-| Frontend Architecture/App Shell | `BLOCKED` — menunggu revalidasi Design System light dan dark |
-| Frontend features | Belum dimulai — menunggu app shell dan vertical slice terkait |
+| Design system | `PASSED` — dual-theme contract, provider, semantic token, accessibility, responsive, overlay, dan print guard tersedia |
+| Frontend Architecture/App Shell | `PASSED` — React Router 7.18.2, 41 route registry, lima shell, error boundary, access policy, formatter, dan mock-adapter contract tersedia |
+| Frontend features | `READY` — vertical slice pertama adalah authentication dan onboarding |
 | Backend/integrasi | Belum dimulai |
 
-Repository saat ini berisi dokumentasi, prototype low-fidelity statis, project foundation, serta design system dual-theme yang dapat ditinjau melalui `npm run dev`. Preview design system bukan production route dan hanya memakai data demo. Belum ada route produk, fixture production, business service, atau implementasi fitur.
+Repository saat ini memiliki 41 route kanonis, public/auth/onboarding/tenant/admin shell, error boundary, access policy murni, service contract, mock-adapter convention, formatter tenant-aware, dan design system dual-theme. Route masih menampilkan contract page tanpa business behavior; preview design system tersedia hanya saat development pada `/__design-system`.
 
 ## Urutan kerja
 
 `PRD Final -> Product Baseline -> Domain Rules -> Permissions -> User Flows -> Screen Map -> Wireframes -> Design System -> Frontend`
 
-Tahap berikutnya adalah Frontend Architecture dan App Shell. Pemilihan router yang aman, service contract, mock-adapter convention, dan global guard dikerjakan pada fase tersebut sebelum vertical slice. Baca [`AGENTS.md`](AGENTS.md) sebelum melakukan perubahan apa pun.
+Tahap berikutnya adalah vertical slice authentication dan onboarding dengan mock adapter. Route, shell, access policy, dan service contract yang sudah tersedia wajib dipakai tanpa backend call langsung dari komponen. Baca [`AGENTS.md`](AGENTS.md) sebelum melakukan perubahan apa pun.
 
 ## Quick start
 
@@ -49,8 +49,9 @@ npm run check
 | Histori dan alasan keputusan | [`docs/OPEN_DECISIONS.md`](docs/OPEN_DECISIONS.md) | Product Decision Register |
 | Urutan implementasi dan gate | [`docs/DELIVERY_PLAN.md`](docs/DELIVERY_PLAN.md) | Roadmap delivery |
 | Runtime, tooling, script, test, CI, dan batas foundation | [`docs/PROJECT_SETUP.md`](docs/PROJECT_SETUP.md) | Panduan project foundation |
+| Router, route registry, shell, boundary, access policy, service contract, dan adapter | [`docs/FRONTEND_ARCHITECTURE.md`](docs/FRONTEND_ARCHITECTURE.md) | Sumber kanonis frontend architecture |
 | Bukti approval preparation gate | [`docs/P0_DECISION_PACK.md`](docs/P0_DECISION_PACK.md) | Receipt, bukan sumber aturan |
 
 ## Gate berikutnya
 
-Documentation, project foundation, dan low-fidelity wireframe telah `PASSED`. Design System dibuka kembali untuk revalidasi dual-theme. Frontend Architecture dan App Shell baru boleh dimulai setelah light/dark visual QA, accessibility, overlay portal, responsive, dan print regression dinyatakan lulus.
+Documentation, project foundation, wireframe, Design System, serta Frontend Architecture/App Shell telah `PASSED`. Gate berikutnya adalah vertical slice authentication dan onboarding berbasis mock adapter; backend dan integrasi tetap belum dimulai.

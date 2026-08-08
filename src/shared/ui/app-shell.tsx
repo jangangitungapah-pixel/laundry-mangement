@@ -10,6 +10,7 @@ export interface AppShellNavItem {
   icon: ReactNode
   active?: boolean
   disabled?: boolean
+  onSelect?: () => void
 }
 
 export interface AppShellProps {
@@ -19,6 +20,7 @@ export interface AppShellProps {
   navigation: readonly AppShellNavItem[]
   children: ReactNode
   actions?: ReactNode
+  mobileNavigation?: ReactNode
   readOnlyBanner?: ReactNode
   className?: string
   workspaceLandmark?: boolean
@@ -29,6 +31,7 @@ export function AppShell({
   children,
   className,
   context,
+  mobileNavigation,
   navigation,
   productName,
   readOnlyBanner,
@@ -37,6 +40,7 @@ export function AppShell({
 }: AppShellProps) {
   const mobileItems = navigation.filter((item) => !item.disabled).slice(0, 4)
   const Workspace = workspaceLandmark ? 'main' : 'div'
+
   return (
     <div
       className={cn(
@@ -56,8 +60,9 @@ export function AppShell({
             </span>
           </div>
         </div>
+
         <nav
-          aria-label={`Navigasi ${workspaceLabel}`}
+          aria-label={'Navigasi ' + workspaceLabel}
           className="mt-4 grid gap-1"
         >
           {navigation.map((item) => (
@@ -65,6 +70,7 @@ export function AppShell({
               key={item.id}
               type="button"
               disabled={item.disabled}
+              onClick={item.onSelect}
               className={cn(
                 'flex min-h-11 items-center gap-3 rounded-md px-3 text-left text-sm font-medium text-[var(--color-navigation-muted)] transition-colors hover:bg-[var(--color-navigation-hover)] hover:text-[var(--color-navigation-text)] disabled:opacity-35',
                 item.active &&
@@ -83,33 +89,39 @@ export function AppShell({
         <header className="sticky top-0 z-[var(--z-sticky)] flex min-h-16 items-center justify-between gap-3 border-b border-line bg-panel/95 px-4 backdrop-blur md:px-6">
           <div className="flex min-w-0 items-center gap-3">
             <span className="lg:hidden">
-              <IconButton
-                label="Buka navigasi demo"
-                icon={<Menu className="size-5" />}
-                variant="ghost"
-              />
+              {mobileNavigation ?? (
+                <IconButton
+                  label="Buka navigasi"
+                  icon={<Menu className="size-5" />}
+                  variant="ghost"
+                />
+              )}
             </span>
             <div className="min-w-0">{context}</div>
           </div>
           <div className="flex shrink-0 items-center gap-2">{actions}</div>
         </header>
+
         {readOnlyBanner}
         <Workspace className="p-4 md:p-6">{children}</Workspace>
       </div>
 
       <nav
-        aria-label={`Navigasi mobile ${workspaceLabel}`}
+        aria-label={'Navigasi mobile ' + workspaceLabel}
         className="absolute inset-x-0 bottom-0 z-[var(--z-sticky)] grid min-h-16 border-t border-line bg-panel lg:hidden"
         style={{
-          gridTemplateColumns: `repeat(${Math.max(mobileItems.length, 1)}, minmax(0, 1fr))`,
+          gridTemplateColumns:
+            'repeat(' + Math.max(mobileItems.length, 1) + ', minmax(0, 1fr))',
         }}
       >
         {mobileItems.map((item) => (
           <button
             key={item.id}
             type="button"
+            disabled={item.disabled}
+            onClick={item.onSelect}
             className={cn(
-              'flex min-h-16 flex-col items-center justify-center gap-1 px-1 text-[0.67rem] font-semibold text-ink-muted',
+              'flex min-h-16 flex-col items-center justify-center gap-1 px-1 text-[0.67rem] font-semibold text-ink-muted disabled:opacity-35',
               item.active && 'text-brand',
             )}
             aria-current={item.active ? 'page' : undefined}

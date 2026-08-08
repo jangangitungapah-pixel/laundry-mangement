@@ -13,6 +13,7 @@
 9. `docs/DESIGN_SYSTEM.md` — token visual, kontrak komponen, responsive, accessibility, dan print foundation.
 10. `docs/DELIVERY_PLAN.md` — urutan delivery dan gate.
 11. `docs/PROJECT_SETUP.md` — runtime, tooling, script, environment, testing, dan batas project foundation.
+12. `docs/FRONTEND_ARCHITECTURE.md` — router, route registry, shell, boundary, access policy, service contract, dan adapter convention.
 
 Jika dua dokumen berbeda, hentikan pekerjaan pada area tersebut dan sinkronkan sumber kanonis terkait. Jangan memilih interpretasi secara diam-diam.
 

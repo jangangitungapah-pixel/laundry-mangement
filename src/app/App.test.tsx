@@ -1,11 +1,13 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 import { App } from '@/app/App'
 import { AppProviders } from '@/app/providers'
 import { ThemeProvider } from '@/shared/theme'
 
-function renderApp() {
+function renderApp(pathname: string) {
+  window.history.replaceState({}, '', pathname)
+
   return render(
     <AppProviders>
       <ThemeProvider defaultTheme="light" persist={false}>
@@ -15,30 +17,52 @@ function renderApp() {
   )
 }
 
-describe('design system preview', () => {
-  it('renders the design system preview without a product route', () => {
-    renderApp()
+beforeEach(() => {
+  window.history.replaceState({}, '', '/')
+})
+
+describe('application routing', () => {
+  it('merender public shell pada route beranda', () => {
+    renderApp('/')
 
     expect(
       screen.getByRole('heading', {
-        name: 'Operasional yang tenang, tindakan yang tegas.',
+        name: 'Operasional laundry yang lebih tertata',
       }),
     ).toBeInTheDocument()
 
     expect(
-      screen.getAllByText(/demo design system · non-production/i).length,
-    ).toBeGreaterThan(0)
+      screen.getByRole('navigation', {
+        name: 'Navigasi publik',
+      }),
+    ).toBeInTheDocument()
   })
 
-  it('runs inside query and theme providers without runtime error', () => {
-    renderApp()
+  it('merender tenant shell dan konteks tenant dari route', () => {
+    renderApp('/app/demo-laundry/dashboard')
 
     expect(
-      screen.getByText('LaundryKita Design System', { exact: true }),
+      screen.getByRole('heading', {
+        name: 'Dashboard',
+      }),
     ).toBeInTheDocument()
 
+    expect(screen.getByText(/demo-laundry · Outlet Utama/i)).toBeInTheDocument()
+
     expect(
-      screen.getByRole('button', { name: 'Gunakan tema gelap' }),
-    ).toBeEnabled()
+      screen.getByRole('navigation', {
+        name: 'Navigasi Tenant application',
+      }),
+    ).toBeInTheDocument()
+  })
+
+  it('menampilkan not-found untuk route di luar Screen Map', () => {
+    renderApp('/route-yang-tidak-ada')
+
+    expect(
+      screen.getByText('Halaman tidak ditemukan', {
+        exact: true,
+      }),
+    ).toBeInTheDocument()
   })
 })

@@ -1,4 +1,6 @@
-:root {
+
+:root,
+[data-theme='light'] {
   color-scheme: light;
 
   --color-background: #f4f8f7;
@@ -9,26 +11,129 @@
   --color-text-muted: #5c6e69;
   --color-border: #cbd9d5;
   --color-border-strong: #90a59f;
+
   --color-primary: #0f766e;
   --color-primary-hover: #0b625c;
   --color-primary-active: #09534e;
   --color-primary-foreground: #ffffff;
+
   --color-accent: #ccfbf1;
   --color-accent-strong: #5eead4;
+
   --color-success: #18794e;
   --color-success-surface: #e7f8ef;
+  --color-success-foreground: #ffffff;
+
   --color-warning: #9a5807;
   --color-warning-surface: #fff5d9;
+  --color-warning-foreground: #ffffff;
+
   --color-danger: #b4232e;
   --color-danger-surface: #fff0f1;
+  --color-danger-foreground: #ffffff;
+
   --color-info: #1e5f91;
   --color-info-surface: #eaf4ff;
+  --color-info-foreground: #ffffff;
+
   --color-overlay: rgb(10 31 27 / 58%);
 
+  --color-navigation: #132522;
+  --color-navigation-text: #f8fffd;
+  --color-navigation-muted: rgb(248 255 253 / 68%);
+  --color-navigation-border: rgb(248 255 253 / 15%);
+  --color-navigation-hover: rgb(248 255 253 / 10%);
+  --color-navigation-active: #ffffff;
+  --color-navigation-active-text: #132522;
+
+  --color-control-thumb: #ffffff;
+  --color-decorative-glow: rgb(204 251 241 / 55%);
+  --color-surface-translucent: rgb(255 255 255 / 72%);
+  --color-subtle-divider: rgb(19 37 34 / 10%);
+
+  --color-print-surface: #ffffff;
+  --color-print-text: #000000;
+  --color-print-muted: #333333;
+  --color-print-border: #000000;
+
+  --shadow-sm: 0 1px 2px rgb(19 37 34 / 8%);
+  --shadow-md: 0 10px 30px rgb(19 37 34 / 10%);
+  --shadow-lg: 0 24px 60px rgb(19 37 34 / 18%);
+
+  --focus-ring-color: #0d9488;
+  --focus-ring: 0 0 0 3px rgb(13 148 136 / 28%);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-background: #071310;
+  --color-surface: #0d1f1b;
+  --color-surface-subtle: #132a24;
+  --color-surface-raised: #16332c;
+  --color-text: #e8f5f1;
+  --color-text-muted: #a6bbb5;
+  --color-border: #2d4942;
+  --color-border-strong: #527068;
+
+  --color-primary: #5eead4;
+  --color-primary-hover: #7df2df;
+  --color-primary-active: #99f6e4;
+  --color-primary-foreground: #062d29;
+
+  --color-accent: #123d36;
+  --color-accent-strong: #2dd4bf;
+
+  --color-success: #6ee7a7;
+  --color-success-surface: #103225;
+  --color-success-foreground: #062016;
+
+  --color-warning: #fbbf5b;
+  --color-warning-surface: #3b2a0e;
+  --color-warning-foreground: #291803;
+
+  --color-danger: #fb7185;
+  --color-danger-surface: #3d1820;
+  --color-danger-foreground: #2a0710;
+
+  --color-info: #7dd3fc;
+  --color-info-surface: #102e3d;
+  --color-info-foreground: #051c27;
+
+  --color-overlay: rgb(0 0 0 / 72%);
+
+  --color-navigation: #06110f;
+  --color-navigation-text: #e8f5f1;
+  --color-navigation-muted: rgb(232 245 241 / 68%);
+  --color-navigation-border: rgb(232 245 241 / 15%);
+  --color-navigation-hover: rgb(232 245 241 / 10%);
+  --color-navigation-active: #173b34;
+  --color-navigation-active-text: #e8f5f1;
+
+  --color-control-thumb: #ecfdf5;
+  --color-decorative-glow: rgb(45 212 191 / 16%);
+  --color-surface-translucent: rgb(13 31 27 / 82%);
+  --color-subtle-divider: rgb(232 245 241 / 10%);
+
+  --color-print-surface: #ffffff;
+  --color-print-text: #000000;
+  --color-print-muted: #333333;
+  --color-print-border: #000000;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 28%);
+  --shadow-md: 0 12px 34px rgb(0 0 0 / 36%);
+  --shadow-lg: 0 28px 68px rgb(0 0 0 / 48%);
+
+  --focus-ring-color: #5eead4;
+  --focus-ring: 0 0 0 3px rgb(94 234 212 / 30%);
+}
+
+:root {
   --font-sans:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', sans-serif;
   --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;
@@ -36,6 +141,7 @@
   --font-size-xl: 1.375rem;
   --font-size-2xl: 1.75rem;
   --font-size-3xl: clamp(2rem, 4vw, 3rem);
+
   --line-height-tight: 1.15;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.65;
@@ -57,13 +163,10 @@
   --radius-xl: 1.25rem;
   --radius-full: 999px;
 
-  --shadow-sm: 0 1px 2px rgb(19 37 34 / 8%);
-  --shadow-md: 0 10px 30px rgb(19 37 34 / 10%);
-  --shadow-lg: 0 24px 60px rgb(19 37 34 / 18%);
-
   --layout-reading: 44rem;
   --layout-content: 76rem;
   --layout-wide: 90rem;
+
   --breakpoint-compact: 22.5rem;
   --breakpoint-tablet: 48rem;
   --breakpoint-desktop: 80rem;
@@ -74,8 +177,6 @@
   --z-overlay: 50;
   --z-toast: 60;
 
-  --focus-ring-color: #0d9488;
-  --focus-ring: 0 0 0 3px rgb(13 148 136 / 28%);
   --motion-fast: 120ms;
   --motion-normal: 180ms;
   --motion-slow: 240ms;
@@ -87,9 +188,11 @@
   --color-canvas: var(--color-background);
   --color-panel: var(--color-surface);
   --color-panel-subtle: var(--color-surface-subtle);
+  --color-panel-raised: var(--color-surface-raised);
   --color-ink: var(--color-text);
   --color-ink-muted: var(--color-text-muted);
   --color-line: var(--color-border);
+  --color-line-strong: var(--color-border-strong);
   --color-brand: var(--color-primary);
   --color-brand-soft: var(--color-accent);
   --color-positive: var(--color-success);

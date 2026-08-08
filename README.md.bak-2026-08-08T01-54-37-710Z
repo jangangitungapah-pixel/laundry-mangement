@@ -9,12 +9,12 @@ LaundryKita adalah SaaS multi-tenant untuk operasional laundry kecil dan menenga
 | Documentation baseline | `PASSED` — PRD 1.0 dan keputusan baseline telah disetujui |
 | Project foundation | `PASSED` — quality checks lulus dan audit runtime dependency tidak menemukan vulnerability |
 | Low-fidelity wireframes | `PASSED` — visual QA dan delegated Product Owner approval tercatat |
-| Design system | `READY_FOR_THEME_QA` — dual-theme token/provider sudah diterapkan; menunggu visual QA light dan dark |
-| Frontend Architecture/App Shell | `BLOCKED` — menunggu revalidasi Design System light dan dark |
+| Design system | `PASSED` — token, komponen, responsive/accessibility, dan print QA lulus |
+| Frontend Architecture/App Shell | Belum dimulai — gate sudah terbuka |
 | Frontend features | Belum dimulai — menunggu app shell dan vertical slice terkait |
 | Backend/integrasi | Belum dimulai |
 
-Repository saat ini berisi dokumentasi, prototype low-fidelity statis, project foundation, serta design system dual-theme yang dapat ditinjau melalui `npm run dev`. Preview design system bukan production route dan hanya memakai data demo. Belum ada route produk, fixture production, business service, atau implementasi fitur.
+Repository saat ini berisi dokumentasi, prototype low-fidelity statis, project foundation, serta design system yang dapat ditinjau melalui `npm run dev`. Preview design system bukan production route dan hanya memakai data demo. Belum ada route produk, fixture production, business service, atau implementasi fitur.
 
 ## Urutan kerja
 
@@ -53,4 +53,4 @@ npm run check
 
 ## Gate berikutnya
 
-Documentation, project foundation, dan low-fidelity wireframe telah `PASSED`. Design System dibuka kembali untuk revalidasi dual-theme. Frontend Architecture dan App Shell baru boleh dimulai setelah light/dark visual QA, accessibility, overlay portal, responsive, dan print regression dinyatakan lulus.
+Documentation, project foundation, low-fidelity wireframe, dan design system telah `PASSED`. Frontend Architecture dan App Shell boleh dimulai dengan [`docs/DELIVERY_PLAN.md`](docs/DELIVERY_PLAN.md) fase 5 sebagai kontrak gate. Implementasi feature tetap dilakukan per vertical slice setelah fondasi app shell tervalidasi.

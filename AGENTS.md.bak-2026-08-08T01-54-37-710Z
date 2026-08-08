@@ -41,18 +41,6 @@ Jika dua dokumen berbeda, hentikan pekerjaan pada area tersebut dan sinkronkan s
 - Status keputusan baseline hanya `APPROVED`. Draft perubahan tidak boleh menyebar ke artefak turunan sebelum disetujui dan disinkronkan.
 - Jangan menghapus histori transaksi atau histori keputusan untuk menyederhanakan implementasi.
 
-## Aturan UI dan dual theme wajib
-
-- Setiap komponen adalah satu implementasi yang memakai semantic CSS token untuk dua palette: `light` dan `dark`.
-- Dilarang membuat pasangan komponen seperti `LightButton`/`DarkButton`, menyalin markup berdasarkan theme, atau menaruh business behavior berbeda pada theme.
-- Palette hanya didefinisikan dalam `src/styles/tokens.css`. File komponen, feature, dan stylesheet lain tidak boleh memuat hex, RGB, HSL, atau utility warna literal.
-- Komponen hanya menggunakan token berdasarkan fungsi seperti background, surface, text, border, primary, success, warning, danger, dan navigation.
-- Dilarang memakai utility `dark:` untuk menduplikasi palette pada komponen. Perbedaan kulit harus terjadi karena nilai semantic token berubah.
-- Aplikasi wajib berada di dalam `ThemeProvider` dan `ThemeContainer`. Provider menyinkronkan theme ke document root agar portal dialog, drawer, dropdown, dan toast menerima palette yang sama.
-- Theme preference boleh disimpan lokal, tetapi data theme bukan bagian dari domain bisnis dan tidak boleh memengaruhi permission atau behavior transaksi.
-- Setiap perubahan primitive atau token wajib diuji pada light dan dark untuk 360, 768, dan 1440 px, termasuk focus, overlay portal, state, serta print receipt.
-- Print receipt selalu memakai token print hitam-putih dan tidak mengikuti dark palette.
-
 ## Definition of Done
 
 ### Dokumentasi

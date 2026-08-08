@@ -2,7 +2,7 @@
 
 | Atribut             | Nilai                                                                |
 | ------------------- | -------------------------------------------------------------------- |
-| Status gate         | `READY_FOR_THEME_QA`                                                 |
+| Status gate         | `PASSED`                                                             |
 | Versi               | 1.0                                                                  |
 | Tanggal persetujuan | 8 Agustus 2026                                                       |
 | Otoritas            | Owner-delegated approval setelah audit teknis dan visual             |
@@ -14,44 +14,35 @@ Dokumen ini adalah sumber kanonis visual, token, dan kontrak komponen LaundryKit
 
 LaundryKita memakai arah **fresh operational ledger**: permukaan putih hangat, teks ink yang kuat, serta teal sebagai aksen aksi tunggal. Hierarki harus cepat dipindai oleh kasir, tetap ramah untuk usaha laundry kecil-menengah, dan tidak menyerupai template SaaS generik.
 
-- Tema MVP mendukung light dan dark melalui semantic token yang sama; komponen dan behavior tidak diduplikasi.
+- Tema MVP hanya light; dark mode tidak dibuat.
 - Font memakai system stack lokal; tidak ada font remote atau CDN.
 - Primary teal dipakai untuk aksi utama, fokus, dan penanda pilihan—bukan dekorasi massal.
 - Success, warning, danger, dan info selalu disertai teks dan/atau ikon yang bermakna.
 - Gradasi, ilustrasi dekoratif, glass effect, dan visual polish yang mengurangi kepadatan operasional dihindari.
 - Bahasa UI adalah Bahasa Indonesia. Status domain yang ditampilkan mempertahankan enum kanonis bila dibutuhkan audit.
 
-## 2. Fondasi token dan theme
+## 2. Fondasi token
 
-`src/styles/tokens.css` adalah satu-satunya sumber palette. Komponen hanya membaca semantic custom properties atau pemetaan Tailwind, bukan warna mentah.
-
-### Arsitektur theme
-
-- `ThemeProvider` menyimpan theme aktif dan menyediakan `setTheme` serta `toggleTheme`.
-- `ThemeContainer` memasang `data-theme="light"` atau `data-theme="dark"` pada boundary aplikasi.
-- Provider juga menyinkronkan theme ke document root agar portal Radix menerima palette yang sama.
-- Satu komponen tidak boleh bercabang berdasarkan theme untuk menentukan warna; pergantian kulit hanya melalui semantic token.
-- Preference dapat disimpan pada `localStorage` dengan fallback ke preferensi sistem.
-- Print receipt memakai token print tetap agar hasil thermal tidak berubah ketika aplikasi memakai dark theme.
+`src/styles/tokens.css` adalah sumber token. Komponen harus memakai semantic custom properties atau pemetaan Tailwind, bukan menanam warna mentah.
 
 ### Warna semantik
 
-| Token | Light | Dark | Pemakaian |
-| --- | --- | --- | --- |
-| `background` | `#f4f8f7` | `#071310` | Latar aplikasi |
-| `surface` | `#ffffff` | `#0d1f1b` | Panel dan dialog |
-| `surface-subtle` | `#edf4f2` | `#132a24` | Konten sekunder |
-| `text` | `#132522` | `#e8f5f1` | Teks utama |
-| `muted` | `#5c6e69` | `#a6bbb5` | Teks penjelas |
-| `border` | `#cbd9d5` | `#2d4942` | Pemisah dan kontrol |
-| `primary` | `#0f766e` | `#5eead4` | Aksi utama dan focus |
-| `accent` | `#ccfbf1` | `#123d36` | Penanda pilihan |
-| `success` | `#18794e` | `#6ee7a7` | Hasil berhasil |
-| `warning` | `#9a5807` | `#fbbf5b` | Perhatian |
-| `danger` | `#b4232e` | `#fb7185` | Risiko/destructive |
-| `info` | `#1e5f91` | `#7dd3fc` | Informasi netral |
+| Token            | Nilai baseline | Pemakaian                |
+| ---------------- | -------------- | ------------------------ |
+| `background`     | `#f4f8f7`      | Latar aplikasi           |
+| `surface`        | `#ffffff`      | Panel dan dialog         |
+| `surface-subtle` | `#edf4f2`      | Kelompok konten sekunder |
+| `text`           | `#132522`      | Teks utama               |
+| `muted`          | `#5c6e69`      | Teks penjelas            |
+| `border`         | `#cbd9d5`      | Pemisah dan kontrol      |
+| `primary`        | `#0f766e`      | Aksi utama               |
+| `accent`         | `#ccfbf1`      | Penanda pilihan          |
+| `success`        | `#18794e`      | Hasil berhasil           |
+| `warning`        | `#9a5807`      | Perhatian                |
+| `danger`         | `#b4232e`      | Risiko/destructive       |
+| `info`           | `#1e5f91`      | Informasi netral         |
 
-Nilai palette hanya boleh muncul dalam `tokens.css`. Perubahan palette wajib mengukur ulang kontras kedua theme.
+Kontras teks normal terhadap surface/background wajib memenuhi WCAG AA. Perubahan token warna memerlukan pengukuran ulang seluruh pasangan foreground/surface.
 
 ### Tipografi, ruang, dan bentuk
 
@@ -76,7 +67,7 @@ Nilai palette hanya boleh muncul dalam `tokens.css`. Perubahan palette wajib men
 
 | Dependency                                | Peran                                   | Guardrail                                                          |
 | ----------------------------------------- | --------------------------------------- | ------------------------------------------------------------------ |
-| Tailwind CSS v4 + Vite plugin             | Utility compiler di atas token semantik | Light/dark hanya mengganti token; utility komponen tetap sama       |
+| Tailwind CSS v4 + Vite plugin             | Utility compiler di atas token semantik | Bukan sumber token dan tidak boleh menghasilkan theme paralel      |
 | `class-variance-authority`                | Kontrak variant/size typed              | Variant lintas komponen harus memakai istilah konsisten            |
 | `clsx` + `tailwind-merge`                 | Komposisi class                         | Dipusatkan melalui helper `cn`                                     |
 | `lucide-react`                            | Ikon garis konsisten                    | Ikon dekoratif `aria-hidden`; aksi icon-only wajib accessible name |
@@ -103,8 +94,6 @@ Semua komponen diekspor melalui `src/shared/ui/index.ts`, mempunyai props TypeSc
 | Shell/print | `AppShell`, `Receipt`                                                                                             | Shell hanya visual foundation; nota mendukung 58 dan 80 mm                                   |
 
 ## 5. Aturan penggunaan
-
-**Kontrak dual-theme wajib:** satu komponen, satu markup, satu behavior, dan dua palette melalui semantic token. Tidak boleh ada komponen light/dark terpisah atau warna mentah di consumer.
 
 1. Pilih komponen semantik yang sudah ada sebelum menambah variasi baru.
 2. Satu layar memiliki satu primary action dominan. Aksi sekunder memakai secondary/quiet.
@@ -149,4 +138,4 @@ npm run check
 npm audit --omit=dev
 ```
 
-Perubahan visual memerlukan QA light dan dark pada 1440 × 900, 768 × 1024, dan 360 × 800, keyboard/focus, portal overlay, serta print QA 58/80 mm. Bukti baseline terdapat pada [Design System Audit](DESIGN_SYSTEM_AUDIT.md).
+Perubahan visual juga memerlukan QA representatif pada 1440 × 900, 768 × 1024, dan 360 × 800, keyboard/focus smoke test, serta print QA 58/80 mm. Bukti baseline terdapat pada [Design System Audit](DESIGN_SYSTEM_AUDIT.md).

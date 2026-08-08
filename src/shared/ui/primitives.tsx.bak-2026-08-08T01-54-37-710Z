@@ -36,7 +36,7 @@ const buttonStyles = cva(
     variants: {
       variant: {
         primary:
-          'border-brand bg-brand text-[var(--color-primary-foreground)] shadow-sm hover:border-[var(--color-primary-hover)] hover:bg-[var(--color-primary-hover)]',
+          'border-brand bg-brand text-white shadow-sm hover:border-[var(--color-primary-hover)] hover:bg-[var(--color-primary-hover)]',
         secondary:
           'border-line bg-panel text-ink shadow-sm hover:border-[var(--color-border-strong)] hover:bg-panel-subtle',
         outline:
@@ -44,7 +44,7 @@ const buttonStyles = cva(
         ghost:
           'border-transparent bg-transparent text-ink hover:bg-panel-subtle',
         danger:
-          'border-critical bg-critical text-[var(--color-danger-foreground)] shadow-sm hover:bg-[var(--color-danger)]/90',
+          'border-critical bg-critical text-white shadow-sm hover:bg-[var(--color-danger)]/90',
       },
       size: {
         sm: 'min-h-11 px-3 text-xs',
@@ -329,7 +329,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
         aria-label={label}
         {...props}
       >
-        <RadixSwitch.Thumb className="block size-5 rounded-full bg-[var(--color-control-thumb)] shadow-sm transition-transform duration-150 data-[state=checked]:translate-x-5" />
+        <RadixSwitch.Thumb className="block size-5 rounded-full bg-white shadow-sm transition-transform duration-150 data-[state=checked]:translate-x-5" />
       </RadixSwitch.Root>
     </label>
   ),

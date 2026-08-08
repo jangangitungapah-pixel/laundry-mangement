@@ -64,7 +64,6 @@ import {
   Textarea,
   ToastPreview,
 } from '@/shared/ui'
-import { ThemeToggle } from '@/shared/theme'
 import '@/styles/preview.css'
 
 const sectionLinks = [
@@ -82,18 +81,18 @@ const sectionLinks = [
 ] as const
 
 const colorTokens = [
-  ['Background', 'var(--color-background)', '--color-background'],
-  ['Surface', 'var(--color-surface)', '--color-surface'],
-  ['Subtle', 'var(--color-surface-subtle)', '--color-surface-subtle'],
-  ['Text', 'var(--color-text)', '--color-text'],
-  ['Muted', 'var(--color-text-muted)', '--color-text-muted'],
-  ['Border', 'var(--color-border)', '--color-border'],
-  ['Primary', 'var(--color-primary)', '--color-primary'],
-  ['Accent', 'var(--color-accent)', '--color-accent'],
-  ['Success', 'var(--color-success)', '--color-success'],
-  ['Warning', 'var(--color-warning)', '--color-warning'],
-  ['Danger', 'var(--color-danger)', '--color-danger'],
-  ['Info', 'var(--color-info)', '--color-info'],
+  ['Background', 'var(--color-background)', '#F4F8F7'],
+  ['Surface', 'var(--color-surface)', '#FFFFFF'],
+  ['Subtle', 'var(--color-surface-subtle)', '#EDF4F2'],
+  ['Text', 'var(--color-text)', '#132522'],
+  ['Muted', 'var(--color-text-muted)', '#5C6E69'],
+  ['Border', 'var(--color-border)', '#CBD9D5'],
+  ['Primary', 'var(--color-primary)', '#0F766E'],
+  ['Accent', 'var(--color-accent)', '#CCFBF1'],
+  ['Success', 'var(--color-success)', '#18794E'],
+  ['Warning', 'var(--color-warning)', '#9A5807'],
+  ['Danger', 'var(--color-danger)', '#B4232E'],
+  ['Info', 'var(--color-info)', '#1E5F91'],
 ] as const
 
 const demoRows = [
@@ -272,14 +271,14 @@ export function DesignSystemPreview() {
       <div className="ds-preview">
         <a
           href="#main-preview"
-          className="fixed top-2 left-2 z-[100] -translate-y-20 rounded-md bg-[var(--color-navigation)] px-4 py-3 text-sm font-bold text-[var(--color-navigation-text)] focus:translate-y-0"
+          className="fixed top-2 left-2 z-[100] -translate-y-20 rounded-md bg-ink px-4 py-3 text-sm font-bold text-white focus:translate-y-0"
         >
           Lewati ke konten
         </a>
 
         <header className="sticky top-0 z-30 flex min-h-16 items-center justify-between border-b border-line bg-panel/90 px-4 backdrop-blur md:px-6">
           <div className="flex min-w-0 items-center gap-3">
-            <span className="grid size-10 shrink-0 place-items-center rounded-md bg-brand font-black text-[var(--color-primary-foreground)]">
+            <span className="grid size-10 shrink-0 place-items-center rounded-md bg-brand font-black text-white">
               LK
             </span>
             <div className="min-w-0">
@@ -292,7 +291,7 @@ export function DesignSystemPreview() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <ThemeToggle />
+            <StatusBadge label="Light theme" tone="primary" />
             <span className="hidden sm:block">
               <LinkButton href="#receipt" variant="secondary" size="sm">
                 Lihat nota
@@ -337,17 +336,17 @@ export function DesignSystemPreview() {
               description="Sistem visual ini mengutamakan kecepatan pindai kasir, kebenaran finansial, dan konteks outlet yang selalu terbaca. Teal menandai tindakan utama; ink dan ruang putih menjaga kepadatan tetap jelas."
             >
               <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.65fr)]">
-                <div className="rounded-xl bg-[var(--color-navigation)] p-6 text-[var(--color-navigation-text)] md:p-8">
+                <div className="rounded-xl bg-ink p-6 text-white md:p-8">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <DemoLabel />
-                    <span className="text-xs font-bold tracking-widest text-[var(--color-navigation-muted)] uppercase">
+                    <span className="text-xs font-bold tracking-widest text-white/60 uppercase">
                       Light only · MVP
                     </span>
                   </div>
                   <h1 className="mt-10 mb-3 max-w-2xl text-3xl font-black tracking-[-0.04em] md:text-5xl">
                     Segar tanpa ramai. Padat tanpa terasa berat.
                   </h1>
-                  <p className="mb-8 max-w-xl text-base leading-relaxed text-[var(--color-navigation-muted)]">
+                  <p className="mb-8 max-w-xl text-base leading-relaxed text-white/70">
                     System font, semantic token, 44 px target, focus yang
                     kentara, dan status berlabel membentuk fondasi UI
                     LaundryKita.
@@ -359,7 +358,7 @@ export function DesignSystemPreview() {
                     </Button>
                     <Button
                       variant="outline"
-                      className="border-[var(--color-navigation-border)] text-[var(--color-navigation-text)] hover:bg-[var(--color-navigation-hover)]"
+                      className="border-white/35 text-white hover:bg-white/10"
                     >
                       Secondary action
                     </Button>

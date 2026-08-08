@@ -13,13 +13,6 @@ html {
   background: var(--color-background);
 }
 
-.theme-container {
-  min-height: 100vh;
-  background: var(--color-background);
-  color: var(--color-text);
-  isolation: isolate;
-}
-
 body {
   min-width: 320px;
   min-height: 100vh;
@@ -161,33 +154,15 @@ textarea,
   }
 
   body[data-print-receipt] {
-    background: var(--color-print-surface);
-    color: var(--color-print-text);
+    background: white;
   }
 
-  body[data-print-receipt] #root > .theme-container > * {
+  body[data-print-receipt] #root > * {
     display: none !important;
   }
 
-  body[data-print-receipt]
-    #root
-    > .theme-container
-    > .receipt-print-portal {
+  body[data-print-receipt] #root > .receipt-print-portal {
     display: block !important;
-  }
-
-  body[data-print-receipt] .receipt-print-portal {
-    --color-surface: var(--color-print-surface);
-    --color-surface-subtle: var(--color-print-surface);
-    --color-text: var(--color-print-text);
-    --color-text-muted: var(--color-print-muted);
-    --color-border: var(--color-print-border);
-    --color-border-strong: var(--color-print-border);
-    --color-primary: var(--color-print-text);
-    --color-primary-foreground: var(--color-print-surface);
-    color-scheme: light;
-    background: var(--color-print-surface);
-    color: var(--color-print-text);
   }
 
   body[data-print-receipt='58'] [data-receipt-width='80'],

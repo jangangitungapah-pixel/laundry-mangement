@@ -1,7 +1,5 @@
 import {
-  createContext,
   useCallback,
-  useContext,
   useLayoutEffect,
   useMemo,
   useState,
@@ -10,14 +8,12 @@ import {
 } from 'react'
 
 import { cn } from '@/shared/lib/cn'
-
-export type Theme = 'light' | 'dark'
-
-interface ThemeContextValue {
-  theme: Theme
-  setTheme: (theme: Theme) => void
-  toggleTheme: () => void
-}
+import {
+  ThemeContext,
+  resolveInitialTheme,
+  type Theme,
+  type ThemeContextValue,
+} from '@/shared/theme/theme-context'
 
 export interface ThemeContainerProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -34,44 +30,6 @@ export interface ThemeProviderProps {
   persist?: boolean
   className?: string
   onThemeChange?: (theme: Theme) => void
-}
-
-const defaultStorageKey = 'laundrykita-theme'
-const ThemeContext = createContext<ThemeContextValue | null>(null)
-
-function isTheme(value: unknown): value is Theme {
-  return value === 'light' || value === 'dark'
-}
-
-function readStoredTheme(storageKey: string): Theme | null {
-  if (typeof window === 'undefined') {
-    return null
-  }
-
-  try {
-    const storedTheme = window.localStorage.getItem(storageKey)
-    return isTheme(storedTheme) ? storedTheme : null
-  } catch {
-    return null
-  }
-}
-
-function readSystemTheme(): Theme {
-  if (
-    typeof window !== 'undefined' &&
-    window.matchMedia?.('(prefers-color-scheme: dark)').matches
-  ) {
-    return 'dark'
-  }
-
-  return 'light'
-}
-
-export function resolveInitialTheme(
-  storageKey = defaultStorageKey,
-  fallbackTheme?: Theme,
-): Theme {
-  return readStoredTheme(storageKey) ?? fallbackTheme ?? readSystemTheme()
 }
 
 export function ThemeContainer({
@@ -96,7 +54,7 @@ export function ThemeProvider({
   children,
   theme: controlledTheme,
   defaultTheme,
-  storageKey = defaultStorageKey,
+  storageKey = 'laundrykita-theme',
   persist = true,
   className,
   onThemeChange,
@@ -136,7 +94,7 @@ export function ThemeProvider({
         try {
           window.localStorage.setItem(storageKey, nextTheme)
         } catch {
-          // Storage dapat ditolak browser; theme aktif tetap berjalan di memory.
+          // Theme tetap berjalan di memory jika storage ditolak.
         }
       }
 
@@ -165,14 +123,4 @@ export function ThemeProvider({
       </ThemeContainer>
     </ThemeContext.Provider>
   )
-}
-
-export function useTheme() {
-  const context = useContext(ThemeContext)
-
-  if (!context) {
-    throw new Error('useTheme harus digunakan di dalam ThemeProvider')
-  }
-
-  return context
 }

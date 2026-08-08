@@ -1,9 +1,13 @@
 export {
-  ThemeContainer,
-  ThemeProvider,
   resolveInitialTheme,
   useTheme,
   type Theme,
+  type ThemeContextValue,
+} from './theme-context'
+
+export {
+  ThemeContainer,
+  ThemeProvider,
   type ThemeContainerProps,
   type ThemeProviderProps,
 } from './theme-provider'

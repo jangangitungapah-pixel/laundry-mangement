@@ -1,8 +1,8 @@
 import { Moon, Sun } from 'lucide-react'
 
-import { Button } from '@/shared/ui/primitives'
 import { cn } from '@/shared/lib/cn'
-import { useTheme } from '@/shared/theme/theme-provider'
+import { useTheme } from '@/shared/theme/theme-context'
+import { Button } from '@/shared/ui/primitives'
 
 export interface ThemeToggleProps {
   className?: string

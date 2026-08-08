@@ -14,9 +14,10 @@
     "typecheck": "tsc -b --pretty false",
     "test": "vitest",
     "test:watch": "vitest",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"index.html\" \"vite.config.ts\" \"eslint.config.js\" \"package.json\" \"tsconfig*.json\" \".prettierrc.json\" \".github/workflows/ci.yml\" \"docs/PROJECT_SETUP.md\" \"docs/DESIGN_SYSTEM.md\" \"docs/DESIGN_SYSTEM_AUDIT.md\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\" \"index.html\" \"vite.config.ts\" \"eslint.config.js\" \"package.json\" \"tsconfig*.json\" \".prettierrc.json\" \".github/workflows/ci.yml\" \"docs/PROJECT_SETUP.md\" \"docs/DESIGN_SYSTEM.md\" \"docs/DESIGN_SYSTEM_AUDIT.md\"",
-    "check": "npm run lint && npm run typecheck && npm run test -- --run && npm run format:check && npm run build"
+    "format": "prettier --write \"scripts/**/*.cjs\" \"src/**/*.{ts,tsx,css}\" \"index.html\" \"vite.config.ts\" \"eslint.config.js\" \"package.json\" \"tsconfig*.json\" \".prettierrc.json\" \".github/workflows/ci.yml\" \"docs/PROJECT_SETUP.md\" \"docs/DESIGN_SYSTEM.md\" \"docs/DESIGN_SYSTEM_AUDIT.md\"",
+    "format:check": "prettier --check \"scripts/**/*.cjs\" \"src/**/*.{ts,tsx,css}\" \"index.html\" \"vite.config.ts\" \"eslint.config.js\" \"package.json\" \"tsconfig*.json\" \".prettierrc.json\" \".github/workflows/ci.yml\" \"docs/PROJECT_SETUP.md\" \"docs/DESIGN_SYSTEM.md\" \"docs/DESIGN_SYSTEM_AUDIT.md\"",
+    "check": "npm run check:theme && npm run lint && npm run typecheck && npm run test -- --run && npm run format:check && npm run build",
+    "check:theme": "node scripts/check-theme-contract.cjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.23",

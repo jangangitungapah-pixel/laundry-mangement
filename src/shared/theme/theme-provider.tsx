@@ -1,4 +1,3 @@
-
 import {
   createContext,
   useCallback,
@@ -20,8 +19,10 @@ interface ThemeContextValue {
   toggleTheme: () => void
 }
 
-export interface ThemeContainerProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'color'> {
+export interface ThemeContainerProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'color'
+> {
   theme: Theme
 }
 
@@ -101,10 +102,7 @@ export function ThemeProvider({
   onThemeChange,
 }: ThemeProviderProps) {
   const [internalTheme, setInternalTheme] = useState<Theme>(() => {
-    return (
-      controlledTheme ??
-      resolveInitialTheme(storageKey, defaultTheme)
-    )
+    return controlledTheme ?? resolveInitialTheme(storageKey, defaultTheme)
   })
 
   const activeTheme = controlledTheme ?? internalTheme

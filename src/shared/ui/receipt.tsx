@@ -28,14 +28,14 @@ export function Receipt({
   return (
     <article
       className={cn(
-        'receipt-foundation mx-auto max-w-full border border-line bg-white p-4 font-receipt text-[11px] leading-[1.45] text-black shadow-sm',
+        'receipt-foundation mx-auto max-w-full border border-[var(--color-print-border)] bg-[var(--color-print-surface)] p-4 font-receipt text-[11px] leading-[1.45] text-[var(--color-print-text)] shadow-sm',
         className,
       )}
       style={{ width: `${width}mm` }}
       data-receipt-width={width}
       aria-label={`Preview nota ${width} milimeter`}
     >
-      <header className="border-b border-dashed border-black pb-3 text-center">
+      <header className="border-b border-dashed border-[var(--color-print-border)] pb-3 text-center">
         <strong className="block text-[13px]">{businessName}</strong>
         <span>{outletName}</span>
         <span className="block">{orderCode}</span>
@@ -45,9 +45,9 @@ export function Receipt({
           <div
             key={`${line.label}-${line.value}`}
             className={cn(
-              'grid grid-cols-[minmax(0,1fr)_auto] gap-3 border-b border-dashed border-black/25 py-1.5',
+              'grid grid-cols-[minmax(0,1fr)_auto] gap-3 border-b border-dashed border-[var(--color-print-border-subtle)] py-1.5',
               line.emphasized &&
-                'border-y border-black py-2 text-[13px] font-black',
+                'border-y border-[var(--color-print-border)] py-2 text-[13px] font-black',
             )}
           >
             <dt>{line.label}</dt>

@@ -51,7 +51,9 @@ export function AppShell({
           </span>
           <div>
             <strong className="block text-sm">{productName}</strong>
-            <span className="text-xs text-[var(--color-navigation-muted)]">{workspaceLabel}</span>
+            <span className="text-xs text-[var(--color-navigation-muted)]">
+              {workspaceLabel}
+            </span>
           </div>
         </div>
         <nav
@@ -65,7 +67,8 @@ export function AppShell({
               disabled={item.disabled}
               className={cn(
                 'flex min-h-11 items-center gap-3 rounded-md px-3 text-left text-sm font-medium text-[var(--color-navigation-muted)] transition-colors hover:bg-[var(--color-navigation-hover)] hover:text-[var(--color-navigation-text)] disabled:opacity-35',
-                item.active && 'bg-[var(--color-navigation-active)] text-[var(--color-navigation-active-text)] hover:bg-[var(--color-navigation-active)]',
+                item.active &&
+                  'bg-[var(--color-navigation-active)] text-[var(--color-navigation-active-text)] hover:bg-[var(--color-navigation-active)]',
               )}
               aria-current={item.active ? 'page' : undefined}
             >

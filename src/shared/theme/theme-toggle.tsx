@@ -1,4 +1,3 @@
-
 import { Moon, Sun } from 'lucide-react'
 
 import { Button } from '@/shared/ui/primitives'
@@ -10,10 +9,7 @@ export interface ThemeToggleProps {
   showLabel?: boolean
 }
 
-export function ThemeToggle({
-  className,
-  showLabel = true,
-}: ThemeToggleProps) {
+export function ThemeToggle({ className, showLabel = true }: ThemeToggleProps) {
   const { theme, toggleTheme } = useTheme()
   const nextThemeLabel =
     theme === 'light' ? 'Gunakan tema gelap' : 'Gunakan tema terang'

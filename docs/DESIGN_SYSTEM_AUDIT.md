@@ -5,10 +5,12 @@
 | Tanggal     | 8 Agustus 2026                                                             |
 | Scope       | Token, primitive, preview, responsive, aksesibilitas, dan print foundation |
 | Browser QA  | Chromium melalui Playwright CLI                                            |
-| Hasil akhir | `READY_FOR_THEME_QA` — baseline light lulus; dark perlu revalidasi |
+| Hasil akhir | `READY_FOR_THEME_QA` — baseline light lulus; dark perlu revalidasi         |
 | Approval    | Owner-delegated sesuai mandat; tidak mengubah keputusan produk             |
 
 ## Addendum dual-theme
+
+**Receipt token guard:** komponen `Receipt` memakai semantic print token untuk surface, text, border, dan subtle border. Tidak ada `bg-white`, `text-black`, atau `border-black` pada source komponen. Receipt tetap hitam-putih pada light maupun dark karena kontrak thermal print.
 
 Requirement UI berubah setelah audit baseline: seluruh komponen sekarang wajib mendukung light dan dark melalui semantic token serta ThemeProvider/ThemeContainer.
 

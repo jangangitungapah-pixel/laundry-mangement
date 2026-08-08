@@ -1,13 +1,8 @@
-
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it } from 'vitest'
 
-import {
-  ThemeProvider,
-  ThemeToggle,
-  useTheme,
-} from '@/shared/theme'
+import { ThemeProvider, ThemeToggle, useTheme } from '@/shared/theme'
 
 function ThemeProbe() {
   const { theme } = useTheme()
@@ -51,9 +46,7 @@ describe('ThemeProvider', () => {
 
     expect(screen.getByTestId('active-theme')).toHaveTextContent('light')
 
-    await user.click(
-      screen.getByRole('button', { name: 'Gunakan tema gelap' }),
-    )
+    await user.click(screen.getByRole('button', { name: 'Gunakan tema gelap' }))
 
     expect(screen.getByTestId('active-theme')).toHaveTextContent('dark')
     expect(document.documentElement).toHaveAttribute('data-theme', 'dark')

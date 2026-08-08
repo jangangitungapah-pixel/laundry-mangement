@@ -36,20 +36,20 @@ LaundryKita memakai arah **fresh operational ledger**: permukaan putih hangat, t
 
 ### Warna semantik
 
-| Token | Light | Dark | Pemakaian |
-| --- | --- | --- | --- |
-| `background` | `#f4f8f7` | `#071310` | Latar aplikasi |
-| `surface` | `#ffffff` | `#0d1f1b` | Panel dan dialog |
-| `surface-subtle` | `#edf4f2` | `#132a24` | Konten sekunder |
-| `text` | `#132522` | `#e8f5f1` | Teks utama |
-| `muted` | `#5c6e69` | `#a6bbb5` | Teks penjelas |
-| `border` | `#cbd9d5` | `#2d4942` | Pemisah dan kontrol |
-| `primary` | `#0f766e` | `#5eead4` | Aksi utama dan focus |
-| `accent` | `#ccfbf1` | `#123d36` | Penanda pilihan |
-| `success` | `#18794e` | `#6ee7a7` | Hasil berhasil |
-| `warning` | `#9a5807` | `#fbbf5b` | Perhatian |
-| `danger` | `#b4232e` | `#fb7185` | Risiko/destructive |
-| `info` | `#1e5f91` | `#7dd3fc` | Informasi netral |
+| Token            | Light     | Dark      | Pemakaian            |
+| ---------------- | --------- | --------- | -------------------- |
+| `background`     | `#f4f8f7` | `#071310` | Latar aplikasi       |
+| `surface`        | `#ffffff` | `#0d1f1b` | Panel dan dialog     |
+| `surface-subtle` | `#edf4f2` | `#132a24` | Konten sekunder      |
+| `text`           | `#132522` | `#e8f5f1` | Teks utama           |
+| `muted`          | `#5c6e69` | `#a6bbb5` | Teks penjelas        |
+| `border`         | `#cbd9d5` | `#2d4942` | Pemisah dan kontrol  |
+| `primary`        | `#0f766e` | `#5eead4` | Aksi utama dan focus |
+| `accent`         | `#ccfbf1` | `#123d36` | Penanda pilihan      |
+| `success`        | `#18794e` | `#6ee7a7` | Hasil berhasil       |
+| `warning`        | `#9a5807` | `#fbbf5b` | Perhatian            |
+| `danger`         | `#b4232e` | `#fb7185` | Risiko/destructive   |
+| `info`           | `#1e5f91` | `#7dd3fc` | Informasi netral     |
 
 Nilai palette hanya boleh muncul dalam `tokens.css`. Perubahan palette wajib mengukur ulang kontras kedua theme.
 
@@ -76,7 +76,7 @@ Nilai palette hanya boleh muncul dalam `tokens.css`. Perubahan palette wajib men
 
 | Dependency                                | Peran                                   | Guardrail                                                          |
 | ----------------------------------------- | --------------------------------------- | ------------------------------------------------------------------ |
-| Tailwind CSS v4 + Vite plugin             | Utility compiler di atas token semantik | Light/dark hanya mengganti token; utility komponen tetap sama       |
+| Tailwind CSS v4 + Vite plugin             | Utility compiler di atas token semantik | Light/dark hanya mengganti token; utility komponen tetap sama      |
 | `class-variance-authority`                | Kontrak variant/size typed              | Variant lintas komponen harus memakai istilah konsisten            |
 | `clsx` + `tailwind-merge`                 | Komposisi class                         | Dipusatkan melalui helper `cn`                                     |
 | `lucide-react`                            | Ikon garis konsisten                    | Ikon dekoratif `aria-hidden`; aksi icon-only wajib accessible name |

@@ -169,10 +169,7 @@ textarea,
     display: none !important;
   }
 
-  body[data-print-receipt]
-    #root
-    > .theme-container
-    > .receipt-print-portal {
+  body[data-print-receipt] #root > .theme-container > .receipt-print-portal {
     display: block !important;
   }
 

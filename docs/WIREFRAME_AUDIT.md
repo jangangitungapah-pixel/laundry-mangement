@@ -2,11 +2,12 @@
 
 | Atribut | Hasil |
 | --- | --- |
-| Tanggal audit | 7 Agustus 2026 |
+| Tanggal audit | 7–8 Agustus 2026 |
 | Scope | `docs/WIREFRAMES.md` dan `design/wireframes/*` |
 | Baseline | PRD 1.0 dan seluruh dokumen kanonis berstatus `APPROVED` |
 | Validasi teknis | `PASS` |
-| Rekomendasi gate | `READY_FOR_APPROVAL` — bukan `PASSED` |
+| Validasi visual browser | `PASS` — 1440×900, 768×1024, dan 360×800 |
+| Status gate | `PASSED` — delegated Product Owner approval tercatat |
 
 Audit ini membandingkan artefak wireframe dengan [`PRD.md`](PRD.md), [`DOMAIN_RULES.md`](DOMAIN_RULES.md), [`ROLE_PERMISSION_MATRIX.md`](ROLE_PERMISSION_MATRIX.md), [`USER_FLOWS.md`](USER_FLOWS.md), dan [`SCREEN_MAP.md`](SCREEN_MAP.md). Prototype tetap merupakan artefak desain statis, bukan source aplikasi atau enforcement keamanan.
 
@@ -34,7 +35,7 @@ Tidak ditemukan kontradiksi yang memerlukan pembukaan keputusan produk atau peru
 - Navigasi sidebar, bottom navigation, route index, scenario runner, dan helper `navigate()` memakai hash serta manifest yang sama. Placeholder `[tenantSlug]`, `[orderId]`, `[customerId]`, dan `[tenantId]` dipertahankan literal agar identik dengan Screen Map.
 - Route yang tidak sesuai persona menghasilkan permission-denied. Konteks tenant pada denied state diganti konteks generik sehingga nama tenant/outlet tidak bocor.
 
-Audit statis membuktikan kesetaraan manifest dan mekanisme hash. Bukti render browser dicatat terpisah pada bagian visual QA.
+Audit statis membuktikan kesetaraan manifest dan mekanisme hash. Browser smoke-test 41/41 route juga lulus; bukti rinci ada di [`WIREFRAME_VISUAL_QA.md`](WIREFRAME_VISUAL_QA.md).
 
 ## 3. Flow coverage
 
@@ -128,11 +129,11 @@ Audit CSS/markup menemukan:
 - skip link, satu `main`, fokus terlihat, fokus heading setelah hash berubah, native modal focus containment, `Escape`, reduced-motion, dan print stylesheet tersedia;
 - status memakai teks/ikon dan tidak bergantung warna.
 
-### Visual QA yang dilakukan auditor ini
+### Visual QA browser
 
-Auditor independen ini tidak merender prototype di browser dan tidak mengklaim visual QA 360 px/1440 px. Pemeriksaan pada bagian ini bersifat statis terhadap CSS, markup, dan behavior JavaScript. Hasil render browser yang benar-benar dilakukan harus ditambahkan sebagai bukti terpisah sebelum approval Product Owner.
+Visual QA lanjutan pada 8 Agustus 2026 memakai Chromium melalui Playwright terhadap local static server. Seluruh 41 route, 18 happy-path scenario, 21 overlay, dan 7 screen state dismoke-test. Inspeksi representatif dilakukan pada 1440×900, 768×1024, dan 360×800, termasuk focus/keyboard, denied/read-only, outlet context, console error, dan print 58/80 mm.
 
-Agen utama telah mencoba membuka preview melalui in-app browser, tetapi runtime browser tidak tersedia. Percobaan fallback Chrome/Edge headless juga ditolak lingkungan dengan `Access denied`. Tidak ada screenshot atau render aktual yang dihasilkan; karena itu responsive/visual QA tetap dinyatakan **belum tervalidasi secara visual**, bukan lulus.
+Temuan pada scenario visibility, horizontal overflow, order-grid desktop, traceability wrapping, dan print width diperbaiki hanya pada prototype. Pengujian ulang lulus. Bukti per viewport, temuan, perbaikan, dan limitation dicatat di [`WIREFRAME_VISUAL_QA.md`](WIREFRAME_VISUAL_QA.md).
 
 ## 8. Validation command dan hasil
 
@@ -143,9 +144,14 @@ Agen utama telah mencoba membuka preview melalui in-app browser, tetapi runtime 
 | Flow/scenario | Ekstraksi `HAPPY_PATHS` | 18 scenario; 12 flow unik |
 | Overlay | Ekstraksi `OVERLAYS` dan seluruh referensi | 21 definisi; 21 referensi; unresolved 0; kebutuhan minimum hilang 0 |
 | State/persona | Audit literal control/manifest | 7 state; 6 persona; missing 0 |
+| Browser route/flow | Playwright headed terhadap local static server | 41 route; 18 scenario/44 step; gagal 0 |
+| Overlay/focus | Playwright click, focus containment, `Escape`, dan focus return | 21/21; gagal 0 |
+| Responsive | Inspeksi 1440×900, 768×1024, 360×800 dan overflow scan | `PASS` setelah perbaikan |
+| Print | Chromium print media dan PDF 58/80 mm | Lebar sesuai media; clipping 0; kontrol prototype tersembunyi |
+| Console/runtime | Console error setelah reload dan seluruh smoke test | 0 error |
 | Network/storage | Scan `fetch`, XHR, WebSocket, EventSource, sendBeacon, storage, import/require, dan URL eksternal | 0 temuan |
 | Dependency | `Get-ChildItem -Recurse -Filter package.json` | 0 file |
-| Link relatif | Scan Markdown repository dan `Test-Path` target | 55 link diperiksa pada 14 file Markdown; broken 0 |
+| Link relatif | Scan Markdown repository dan `Test-Path` target | 63 link diperiksa; broken 0 |
 | Whitespace | `git diff --check` | `PASS` |
 
 ## 9. Limitation dan risiko UX tersisa
@@ -155,19 +161,19 @@ Limitasi yang disengaja dan bukan blocker teknis:
 - Prototype tidak menjalankan validasi server, persistence, print/Web Share/download, email, checkout, autentikasi, atau network request nyata.
 - Permission dan subscription guard hanya simulasi visual; enforcement production tetap server-side.
 - Scenario runner mengganti representasi fixture, bukan membuat ledger atau histori persisten.
-- Breakpoint telah tercakup secara statis, tetapi density, scroll, safe-area, keyboard virtual, focus return, dan print 58/80 mm tetap perlu inspeksi browser/perangkat.
+- Printer thermal fisik, keyboard virtual perangkat, dan safe-area perangkat nyata tetap merupakan verifikasi pilot; browser visual QA dan print-media QA sudah lulus.
 
-Risiko yang wajib diaudit Product/UX sebelum design system:
+Risiko yang tetap perlu diuji pada design system atau pilot, bukan blocker gate:
 
 1. Apakah 11 interaksi utama order tetap dapat diselesaikan dalam dua menit oleh kasir baru.
-2. Apakah ringkasan sticky dan bottom navigation tidak bertabrakan pada 360 px serta saat keyboard mobile terbuka.
+2. Perilaku ringkasan sticky dan bottom navigation ketika keyboard virtual perangkat nyata terbuka.
 3. Apakah perbedaan order state, payment state, dan read-only cukup jelas tanpa visual color final.
 4. Apakah tabel/card payment, laporan, role, serta audit masih mudah dipindai pada data padat.
 5. Apakah confirmation finansial memberi cukup friction tanpa memperlambat transaksi normal.
-6. Apakah receipt 58/80 mm dan browser print tetap terbaca pada printer pilot.
+6. Kalibrasi margin dan kepadatan nota pada model printer thermal pilot.
 
 ## 10. Blocker dan rekomendasi gate
 
-Tidak ada blocker dokumentasi, scope, route, flow, permission, formula, atau teknis statis yang ditemukan. Seluruh validasi teknis yang dijalankan lulus.
+Tidak ada blocker dokumentasi, scope, route, flow, permission, formula, teknis, atau visual yang ditemukan setelah perbaikan dan retest. Seluruh validasi relevan lulus.
 
-Rekomendasi fase adalah `READY_FOR_APPROVAL`, bukan `PASSED`. Product Owner masih harus menyetujui hierarchy, navigation, konteks outlet, primary action, critical state, responsive render, dan happy path sebelum design system dimulai.
+Gate low-fidelity wireframe berstatus `PASSED` melalui owner-delegated approval pada 8 Agustus 2026. Design system boleh dimulai; implementasi frontend feature tetap menunggu design-system gate.

@@ -17,11 +17,14 @@
 
 * { box-sizing: border-box; }
 
-html { min-width: 320px; }
+[hidden] { display: none !important; }
+
+html { min-width: 320px; overflow-x: clip; }
 
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: clip;
   background: var(--wash);
   color: var(--ink);
 }
@@ -93,6 +96,7 @@ p { line-height: 1.5; }
 .prototype-brand small { display: block; margin-top: 2px; color: var(--muted); font-size: .67rem; letter-spacing: .09em; }
 .prototype-mark { display: grid; width: 38px; height: 38px; place-items: center; border: 2px solid var(--ink); font-weight: 900; }
 .prototype-tools { justify-content: flex-end; }
+.chip-row { flex-wrap: wrap; }
 
 .prototype-layout {
   display: grid;
@@ -282,7 +286,7 @@ textarea { min-height: 84px; resize: vertical; }
 
 .order-workspace { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(300px, .5fr); gap: 24px; }
 .order-items { display: grid; gap: 10px; }
-.order-item { display: grid; grid-template-columns: minmax(170px, 1fr) 88px 105px 115px auto; gap: 8px; align-items: end; padding: 12px; border: 1px solid var(--line); }
+.order-item { display: grid; grid-template-columns: minmax(140px, 1fr) minmax(64px, 82px) minmax(70px, 95px) minmax(80px, 105px) auto; gap: 8px; align-items: end; padding: 12px; border: 1px solid var(--line); }
 .order-item label { display: grid; gap: 5px; color: var(--muted); font-size: .7rem; }
 .order-item strong { padding-bottom: 11px; text-align: right; }
 .summary-panel { position: sticky; top: 146px; align-self: start; border: 2px solid var(--ink); padding: 16px; }
@@ -386,7 +390,7 @@ textarea { min-height: 84px; resize: vertical; }
   .metric:nth-child(3n) { border-right: 1px solid var(--line); }
   .metric:nth-child(2n) { border-right: 0; }
   .scenario-runner { left: 242px; }
-  .order-item { grid-template-columns: minmax(160px, 1fr) 82px 100px 105px auto; }
+  .order-item { grid-template-columns: minmax(130px, 1fr) minmax(62px, 78px) minmax(68px, 90px) minmax(76px, 96px) auto; }
 }
 
 @media (max-width: 800px) {
@@ -509,10 +513,13 @@ textarea { min-height: 84px; resize: vertical; }
 }
 
 @media print {
+  html,
+  body { min-width: 0; width: auto; overflow: visible; }
   body { background: #fff; }
   .prototype-bar, .control-panel, .app-topbar, .route-nav, .mobile-nav, .page-heading, .receipt-actions, .scenario-drawer, .scenario-runner, .toast { display: none !important; }
   .prototype-layout, .app-layout { display: block; }
   .screen { padding: 0; }
-  .receipt { width: 80mm; border: 0; }
+  .screen-inner > .section.panel-flat { display: none !important; }
+  .receipt { width: 100%; max-width: 80mm; border: 0; }
   .print-only { display: block; }
 }

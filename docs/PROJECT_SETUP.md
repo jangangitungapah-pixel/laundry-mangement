@@ -4,7 +4,7 @@
 
 Project foundation adalah fondasi tooling, bukan implementasi fitur frontend. Fondasi boleh tersedia setelah documentation gate `PASSED`, sedangkan production screen, design component, route produk, fixture produk, dan business logic tetap menunggu approval wireframe serta design-system gate.
 
-Status gate saat ini `BLOCKED`: seluruh quality check foundation lulus, tetapi `npm audit --omit=dev` masih mengembalikan dua temuan high dari satu advisory React Router RSC/server-action upstream. Foundation ini client-only dan tidak memakai RSC/server action, tetapi gate tidak dinaikkan menjadi `PASSED` sampai versi runtime yang bersih tersedia. Downgrade otomatis tidak dijalankan karena versi yang disarankan audit memiliki advisory lain dan merupakan perubahan breaking.
+Status gate `PASSED`. React Router sementara dihapus karena patched version `8.3.0` untuk advisory `GHSA-qwww-vcr4-c8h2` belum tersedia di npm pada 8 Agustus 2026. Foundation merender `App` langsung di dalam `QueryClientProvider`; router dipilih kembali pada fase app shell setelah tersedia versi kompatibel tanpa high/critical vulnerability.
 
 ## Runtime
 
@@ -14,15 +14,15 @@ Status gate saat ini `BLOCKED`: seluruh quality check foundation lulus, tetapi `
 
 ## Stack foundation
 
-| Area         | Pilihan                          | Alasan                                                                     |
-| ------------ | -------------------------------- | -------------------------------------------------------------------------- |
-| Build        | Vite                             | Development server dan production build yang minimal untuk React.          |
-| UI runtime   | React + TypeScript strict        | Fondasi typed tanpa menetapkan visual design.                              |
-| Routing      | React Router                     | Satu placeholder route membuktikan router; route produk belum didaftarkan. |
-| Server state | TanStack Query                   | Provider tersedia tanpa query bisnis atau network request.                 |
-| Environment  | Zod                              | Memvalidasi variable non-secret sebelum digunakan.                         |
-| Quality      | ESLint + Prettier                | Memisahkan static analysis dan formatting.                                 |
-| Test         | Vitest + Testing Library + jsdom | Menguji render, router, dan provider secara ringan.                        |
+| Area         | Pilihan                          | Alasan                                                                  |
+| ------------ | -------------------------------- | ----------------------------------------------------------------------- |
+| Build        | Vite                             | Development server dan production build yang minimal untuk React.       |
+| UI runtime   | React + TypeScript strict        | Fondasi typed tanpa menetapkan visual design.                           |
+| Routing      | Ditunda ke fase app shell        | Mencegah dependency high vulnerability; route produk belum didaftarkan. |
+| Server state | TanStack Query                   | Provider tersedia tanpa query bisnis atau network request.              |
+| Environment  | Zod                              | Memvalidasi variable non-secret sebelum digunakan.                      |
+| Quality      | ESLint + Prettier                | Memisahkan static analysis dan formatting.                              |
+| Test         | Vitest + Testing Library + jsdom | Menguji render placeholder dan provider secara ringan.                  |
 
 ## Struktur
 
@@ -32,7 +32,6 @@ src/
     App.tsx
     App.test.tsx
     providers.tsx
-    router.tsx
   shared/
     config/env.ts
     lib/query-client.ts
@@ -85,8 +84,8 @@ Nilai divalidasi pada `src/shared/config/env.ts`. Nilai default menjaga placehol
 
 ## Testing dan CI
 
-Test minimum memastikan placeholder `App` dapat dirender serta React Router dan QueryClientProvider berjalan tanpa runtime error. Tidak ada snapshot besar atau fixture produk. Workflow `.github/workflows/ci.yml` menggunakan Node.js 22.12, npm cache, `npm ci`, lalu `npm run check` pada push dan pull request dengan permission `contents: read`.
+Test minimum memastikan placeholder `App` dapat dirender serta QueryClientProvider berjalan tanpa runtime error. Tidak ada snapshot besar atau fixture produk. Workflow `.github/workflows/ci.yml` menggunakan Node.js 22.12, npm cache, `npm ci`, lalu `npm run check` pada push dan pull request dengan permission `contents: read`.
 
 ## Dependency yang sengaja ditunda
 
-Tailwind, UI component/icon library, Storybook, PWA plugin, state manager tambahan, form library, backend/database/auth/payment/analytics SDK, dan dependency feature lain menunggu design system atau vertical slice yang sah. Foundation juga tidak memuat authentication, API request, dashboard, navigation produk, atau implementasi fitur.
+React Router, Tailwind, UI component/icon library, Storybook, PWA plugin, state manager tambahan, form library, backend/database/auth/payment/analytics SDK, dan dependency feature lain menunggu fase/gate yang sah. Foundation juga tidak memuat authentication, API request, dashboard, navigation produk, atau implementasi fitur.

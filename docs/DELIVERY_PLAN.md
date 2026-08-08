@@ -17,14 +17,18 @@
 
 ## 2. Project foundation (tooling-only)
 
+- **Status gate:** `PASSED` pada 8 Agustus 2026.
+
 - **Input:** Documentation baseline yang `PASSED` dan process guardrail dalam `AGENTS.md`.
-- **Output:** Vite, React, TypeScript strict, dependency foundation minimal, satu placeholder route netral, provider/router kosong, environment validation, test harness, package lock, dan CI.
+- **Output:** Vite, React, TypeScript strict, dependency foundation minimal, satu placeholder netral, provider kosong, environment validation, test harness, package lock, dan CI; router dapat ditunda sampai app shell bila versi aman belum tersedia.
 - **Dependency:** Documentation gate `PASSED`; fase ini boleh berjalan sebelum atau paralel dengan low-fidelity wireframes.
 - **Gate:** Lint, typecheck, test, format check, build, dependency audit, dan CI configuration lulus tanpa menambah product UI atau business behavior.
 - **Definition of Done:** Vite/React/TypeScript tersedia; dependency hanya foundation yang disetujui; lint, typecheck, test, dan build lulus; CI tersedia; tidak ada production screen, product route, fixture produk, design component, atau feature implementation.
 - **Dilarang terlalu dini:** Menurunkan wireframe menjadi component, mendaftarkan 41 route produk, membuat app shell produksi, memasang design dependency, menghubungkan API/auth/backend, atau menyebut scaffold sebagai frontend feature phase.
 
 ## 3. Low-fidelity wireframes
+
+- **Status gate:** `PASSED` pada 8 Agustus 2026 melalui visual QA dan delegated Product Owner approval.
 
 - **Input:** Seluruh output documentation baseline.
 - **Output:** Wireframe desktop/mobile untuk 41 route final dan dialog/drawer critical flow; prototype klik untuk happy path.
@@ -34,6 +38,8 @@
 - **Dilarang terlalu dini:** Visual polish, brand exploration luas, kode frontend, route/role/state baru, atau perubahan formula dari wireframe.
 
 ## 4. Design system
+
+- **Status gate:** Belum dimulai; dependency wireframe telah terpenuhi.
 
 - **Input:** Wireframe yang disetujui dan kebutuhan aksesibilitas/print PRD.
 - **Output:** Token, typography, spacing, color, elevation, icon rules, responsive grid, serta komponen/state inti.
@@ -45,7 +51,7 @@
 ## 5. Frontend architecture dan app shell
 
 - **Input:** Design system, Screen Map, Permission Matrix, Domain Rules.
-- **Output:** App shell, routing, state/error boundary, localization/formatting, service contracts, mock adapter convention, fixture factory, test harness.
+- **Output:** App shell, pemilihan dan pemasangan router yang bebas high/critical vulnerability, routing produk, state/error boundary, localization/formatting, service contracts, mock adapter convention, fixture factory, test harness.
 - **Dependency:** Design-system gate.
 - **Gate:** Shell desktop/mobile dan semua global state tervalidasi dengan mock tanpa business logic di component.
 - **Definition of Done:** Lint/typecheck/test/build lulus; no secret; capability/outlet/read-only guards dapat diuji; adapter dapat diganti tanpa mengubah UI.

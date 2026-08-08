@@ -70,6 +70,13 @@ Seluruh keputusan di bawah final untuk baseline MVP. Perubahan hanya boleh dilak
 | P2-ANL-01 | PostHog menjadi default analytics pilot; event terpilih dikirim server-side dengan ID pseudonim, tanpa data pelanggan, retensi 12 bulan. | Cukup untuk metrik pilot dengan minimisasi data. | Consent/privacy, event adapter, retention. | Ya: provider dan retensi. | PRD, Product Baseline, Delivery Plan | `APPROVED` |
 | P2-NOTIF-01 | MVP hanya mengirim email autentikasi/undangan dan notifikasi billing yang diperlukan; tidak ada notifikasi status order, notification center, atau WhatsApp automation. | Menjaga scope sesuai requirement. | Template email terbatas; tidak ada UI notifikasi pelanggan. | Ya: template/channel yang sudah disetujui. | PRD, Product Baseline, User Flows, Screen Map | `APPROVED` |
 
+## Keputusan proses teknis
+
+| ID | Keputusan final | Alasan | Dampak | Configurable | Dokumen terdampak | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| PROC-01 | React Router dihapus sementara dari project foundation dan dipilih kembali pada fase app shell setelah tersedia versi kompatibel tanpa high/critical vulnerability. | Patched version `8.3.0` untuk `GHSA-qwww-vcr4-c8h2` belum tersedia di npm; high vulnerability tidak boleh diabaikan. | Foundation merender placeholder langsung dalam QueryClientProvider; tidak ada route produk sebelum app-shell gate. | Tidak; wajib audit ulang saat pemilihan router. | AGENTS, README, Project Setup, Delivery Plan | `APPROVED` |
+| PROC-02 | Low-fidelity wireframe dinyatakan `PASSED` melalui owner-delegated approval setelah visual QA browser seluruh route, happy path, overlay, state, viewport, dan print selesai. | Mandat Product Owner mengizinkan approval tanpa konfirmasi tambahan setelah audit lulus dan tidak ada perubahan produk. | Design-system gate boleh dimulai; frontend feature tetap menunggu design-system approval. | Tidak. | README, Wireframes, Wireframe Audit, Wireframe Visual QA, Delivery Plan | `APPROVED` |
+
 ## Aturan perubahan keputusan
 
 Perubahan keputusan memerlukan alasan, pemilik, tanggal efektif, dampak migrasi, dan daftar dokumen yang disinkronkan. Perubahan scope atau functional requirement wajib memperbarui PRD; perubahan formula/state wajib memperbarui Domain Rules; perubahan akses wajib memperbarui Permission Matrix.

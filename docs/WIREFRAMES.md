@@ -2,7 +2,7 @@
 
 | Atribut | Nilai |
 | --- | --- |
-| Status | `READY_FOR_APPROVAL` |
+| Status | `PASSED` |
 | Fase | Low-fidelity wireframes |
 | Sumber route | [`SCREEN_MAP.md`](SCREEN_MAP.md) |
 | Sumber flow | [`USER_FLOWS.md`](USER_FLOWS.md) |
@@ -225,4 +225,4 @@ Keputusan berikut hanya menentukan representasi dan dapat ditinjau pada gate wir
 - Layout dapat ditinjau pada 360–430 px, 768 px, serta 1280–1440 px tanpa primary action terhalang.
 - Tidak ada visual design final, dependency, network request, penyimpanan browser, source aplikasi, atau perubahan aturan produk pada artefak wireframe.
 
-Approval Product Owner atas hierarchy, navigasi, konteks outlet, primary action, critical state, dan happy path diperlukan sebelum gate dinyatakan `PASSED` dan fase design system dimulai.
+Visual QA browser dan delegated Product Owner approval telah selesai pada 8 Agustus 2026. Bukti pengujian tersedia di [`WIREFRAME_VISUAL_QA.md`](WIREFRAME_VISUAL_QA.md); fase design system boleh dimulai tanpa mengubah keputusan produk.

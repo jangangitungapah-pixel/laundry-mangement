@@ -1,3 +1,5 @@
+import { DesignSystemPreview } from '@/app/DesignSystemPreview'
+
 export function App() {
-  return <main>LaundryKita project foundation ready</main>
+  return <DesignSystemPreview />
 }

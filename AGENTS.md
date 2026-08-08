@@ -9,8 +9,10 @@
 5. `docs/ROLE_PERMISSION_MATRIX.md` — role, capability, data/outlet scope, denied/read-only.
 6. `docs/USER_FLOWS.md` — urutan interaksi dan edge case.
 7. `docs/SCREEN_MAP.md` — route, data, action, dan screen state.
-8. `docs/DELIVERY_PLAN.md` — urutan delivery dan gate.
-9. `docs/PROJECT_SETUP.md` — runtime, tooling, script, environment, testing, dan batas project foundation.
+8. `docs/WIREFRAMES.md` — hierarchy, layout, responsive behavior, overlay, dan screen state.
+9. `docs/DESIGN_SYSTEM.md` — token visual, kontrak komponen, responsive, accessibility, dan print foundation.
+10. `docs/DELIVERY_PLAN.md` — urutan delivery dan gate.
+11. `docs/PROJECT_SETUP.md` — runtime, tooling, script, environment, testing, dan batas project foundation.
 
 Jika dua dokumen berbeda, hentikan pekerjaan pada area tersebut dan sinkronkan sumber kanonis terkait. Jangan memilih interpretasi secara diam-diam.
 
@@ -46,7 +48,7 @@ Jika dua dokumen berbeda, hentikan pekerjaan pada area tersebut dan sinkronkan s
 - Seluruh keputusan final, requirement terlacak ke flow/layar, flow menunjuk domain rule/layar, dan link relatif valid.
 - Scope, istilah, role, state, route, capability, formula, serta asumsi pilot konsisten.
 - Audit tidak menemukan placeholder keputusan, pertanyaan produk yang belum diselesaikan, atau fitur di luar scope.
-- `git diff --check` lulus dan repository tetap documentation-only sampai gate berikutnya.
+- `git diff --check` lulus dan tidak ada implementasi yang mendahului gate aktif.
 
 ### Project foundation
 
@@ -64,12 +66,14 @@ Jika dua dokumen berbeda, hentikan pekerjaan pada area tersebut dan sinkronkan s
 
 ### Design system
 
-- Dibangun setelah wireframe disetujui dan mencakup token, typography, spacing, color, state, form, table, dialog/drawer, navigation, feedback, dan print foundation.
-- Mendukung 360 px, keyboard, focus, contrast, status non-color-only, rupiah, Bahasa Indonesia, dan density kasir.
-- Komponen contoh untuk app shell, form order, tabel, board, billing, dan Super Admin disetujui sebelum frontend.
+- Dibangun setelah wireframe disetujui dan mencakup token, typography, spacing, color, state, form, table, dialog/drawer, navigation, feedback, serta print foundation dalam `src/shared/ui` dan `src/styles`.
+- Mendukung 360 px, keyboard, focus trap/return, contrast AA, reduced motion, status non-color-only, rupiah, Bahasa Indonesia, target minimum 44 px, serta nota 58/80 mm.
+- Preview hanya menjadi katalog internal dengan data demo; tidak boleh berisi route produk, fixture production, service call, auth, atau business logic.
+- Lint, typecheck, component test, format check, build, audit dependency, browser QA 360/768/1440, console/overflow check, dan print QA lulus; approval dicatat sebelum frontend architecture.
 
 ### Frontend
 
+- Frontend Architecture dan App Shell baru boleh dimulai setelah design-system gate `PASSED`; route dan feature diterapkan bertahap sesuai Delivery Plan, bukan sekaligus dari preview.
 - Implementasi mengikuti screen/flow/domain/permission final melalui service contract dan mock adapter.
 - Seluruh fixture mencakup persona, outlet, status, subscription, loading/empty/error/denied/read-only tanpa data lintas tenant.
 - Responsive, accessibility, print, lint, typecheck, unit/component/E2E, dan production build lulus sesuai fase.

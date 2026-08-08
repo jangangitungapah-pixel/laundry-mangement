@@ -9,17 +9,18 @@ LaundryKita adalah SaaS multi-tenant untuk operasional laundry kecil dan menenga
 | Documentation baseline | `PASSED` — PRD 1.0 dan keputusan baseline telah disetujui |
 | Project foundation | `PASSED` — quality checks lulus dan audit runtime dependency tidak menemukan vulnerability |
 | Low-fidelity wireframes | `PASSED` — visual QA dan delegated Product Owner approval tercatat |
-| Design system | Belum dimulai — gate sudah terbuka |
-| Frontend features | Belum dimulai |
+| Design system | `PASSED` — token, komponen, responsive/accessibility, dan print QA lulus |
+| Frontend Architecture/App Shell | Belum dimulai — gate sudah terbuka |
+| Frontend features | Belum dimulai — menunggu app shell dan vertical slice terkait |
 | Backend/integrasi | Belum dimulai |
 
-Repository saat ini berisi dokumentasi, prototype low-fidelity statis, dan project foundation tooling-only. Fondasi hanya memiliki placeholder netral, QueryClient provider kosong, test harness, dan CI; pemilihan router ditunda ke fase app shell. Belum ada production UI, design system, route produk, fixture produk, atau implementasi fitur.
+Repository saat ini berisi dokumentasi, prototype low-fidelity statis, project foundation, serta design system yang dapat ditinjau melalui `npm run dev`. Preview design system bukan production route dan hanya memakai data demo. Belum ada route produk, fixture production, business service, atau implementasi fitur.
 
 ## Urutan kerja
 
 `PRD Final -> Product Baseline -> Domain Rules -> Permissions -> User Flows -> Screen Map -> Wireframes -> Design System -> Frontend`
 
-Tahap berikutnya adalah design system berdasarkan low-fidelity wireframe yang telah disetujui. Baca [`AGENTS.md`](AGENTS.md) sebelum melakukan perubahan apa pun.
+Tahap berikutnya adalah Frontend Architecture dan App Shell. Pemilihan router yang aman, service contract, mock-adapter convention, dan global guard dikerjakan pada fase tersebut sebelum vertical slice. Baca [`AGENTS.md`](AGENTS.md) sebelum melakukan perubahan apa pun.
 
 ## Quick start
 
@@ -43,6 +44,8 @@ npm run check
 | Prototype klik low-fidelity | [`design/wireframes/README.md`](design/wireframes/README.md) | Cara membuka dan menjalankan 41 route serta happy path |
 | Bukti coverage dan validasi wireframe | [`docs/WIREFRAME_AUDIT.md`](docs/WIREFRAME_AUDIT.md) | Audit kesiapan approval wireframe |
 | Bukti visual QA wireframe | [`docs/WIREFRAME_VISUAL_QA.md`](docs/WIREFRAME_VISUAL_QA.md) | Browser, viewport, flow, overlay, state, dan print QA |
+| Token, kontrak komponen, responsive, accessibility, dan print | [`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md) | Sumber kanonis design system |
+| Bukti implementasi dan visual QA design system | [`docs/DESIGN_SYSTEM_AUDIT.md`](docs/DESIGN_SYSTEM_AUDIT.md) | Coverage, contrast, keyboard, viewport, print, dan quality checks |
 | Histori dan alasan keputusan | [`docs/OPEN_DECISIONS.md`](docs/OPEN_DECISIONS.md) | Product Decision Register |
 | Urutan implementasi dan gate | [`docs/DELIVERY_PLAN.md`](docs/DELIVERY_PLAN.md) | Roadmap delivery |
 | Runtime, tooling, script, test, CI, dan batas foundation | [`docs/PROJECT_SETUP.md`](docs/PROJECT_SETUP.md) | Panduan project foundation |
@@ -50,4 +53,4 @@ npm run check
 
 ## Gate berikutnya
 
-Project foundation dan low-fidelity wireframe telah `PASSED`. Design system boleh dimulai dengan [`docs/WIREFRAMES.md`](docs/WIREFRAMES.md) sebagai sumber hierarchy/layout dan dokumen domain/permission sebagai guardrail. Frontend features tetap belum boleh dimulai sampai design-system gate disetujui.
+Documentation, project foundation, low-fidelity wireframe, dan design system telah `PASSED`. Frontend Architecture dan App Shell boleh dimulai dengan [`docs/DELIVERY_PLAN.md`](docs/DELIVERY_PLAN.md) fase 5 sebagai kontrak gate. Implementasi feature tetap dilakukan per vertical slice setelah fondasi app shell tervalidasi.

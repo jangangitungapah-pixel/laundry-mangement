@@ -1,0 +1,169 @@
+.ds-preview {
+  --preview-rail: 15.5rem;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 85% 0%,
+      rgb(204 251 241 / 55%),
+      transparent 26rem
+    ),
+    var(--color-background);
+}
+
+.ds-preview-layout {
+  display: grid;
+  grid-template-columns: var(--preview-rail) minmax(0, 1fr);
+  max-width: var(--layout-wide);
+  margin: 0 auto;
+}
+
+.ds-preview-rail {
+  position: sticky;
+  top: 4rem;
+  height: calc(100vh - 4rem);
+  overflow-y: auto;
+  border-right: 1px solid var(--color-border);
+  padding: 1.5rem 1rem;
+  background: rgb(255 255 255 / 72%);
+  backdrop-filter: blur(16px);
+}
+
+.ds-preview-main {
+  min-width: 0;
+  padding: clamp(1.25rem, 3vw, 3rem);
+}
+
+.ds-preview-section {
+  scroll-margin-top: 5.5rem;
+  padding-block: clamp(2.5rem, 5vw, 5rem);
+  border-top: 1px solid var(--color-border);
+}
+
+.ds-preview-section:first-child {
+  padding-top: 1.5rem;
+  border-top: 0;
+}
+
+.ds-swatch {
+  min-height: 7rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.ds-swatch-color {
+  height: 4rem;
+  border-bottom: 1px solid rgb(19 37 34 / 10%);
+}
+
+.ds-mobile-shell {
+  position: relative;
+  width: min(100%, 22.5rem);
+  min-height: 38rem;
+  overflow: hidden;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 1.75rem;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-lg);
+}
+
+.ds-mobile-shell::before {
+  content: '';
+  position: absolute;
+  top: 0.6rem;
+  left: 50%;
+  z-index: 3;
+  width: 4.5rem;
+  height: 0.28rem;
+  border-radius: 999px;
+  transform: translateX(-50%);
+  background: var(--color-border-strong);
+}
+
+.ds-order-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(18rem, 0.55fr);
+  gap: 1.5rem;
+}
+
+.ds-board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(13rem, 1fr));
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.receipt-print-portal {
+  display: none;
+}
+
+@media (max-width: 64rem) {
+  .ds-preview-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-preview-rail {
+    position: sticky;
+    top: 4rem;
+    z-index: 10;
+    display: flex;
+    height: auto;
+    gap: 0.5rem;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.65rem 1rem;
+  }
+
+  .ds-preview-rail > p,
+  .ds-preview-rail > div {
+    display: none;
+  }
+
+  .ds-preview-rail nav {
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .ds-preview-rail nav a {
+    flex: 0 0 auto;
+  }
+
+  .ds-order-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-preview-section {
+    scroll-margin-top: 9rem;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .ds-preview-main {
+    padding-inline: 1rem;
+  }
+
+  .ds-preview-section {
+    padding-block: 2.5rem;
+  }
+
+  .ds-board {
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+}
+
+@media print {
+  html,
+  body {
+    min-width: 0;
+    width: auto;
+    overflow: visible;
+  }
+
+  body[data-print-receipt] #root > .receipt-print-portal {
+    display: block !important;
+  }
+}

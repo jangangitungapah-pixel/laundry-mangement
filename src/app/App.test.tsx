@@ -4,16 +4,21 @@ import { describe, expect, it } from 'vitest'
 import { App } from '@/app/App'
 import { AppProviders } from '@/app/providers'
 
-describe('project foundation', () => {
-  it('renders the neutral foundation message', () => {
+describe('design system preview', () => {
+  it('renders the design system preview without a product route', () => {
     render(<App />)
 
     expect(
-      screen.getByText('LaundryKita project foundation ready'),
+      screen.getByRole('heading', {
+        name: 'Operasional yang tenang, tindakan yang tegas.',
+      }),
     ).toBeInTheDocument()
+    expect(
+      screen.getAllByText(/demo design system · non-production/i).length,
+    ).toBeGreaterThan(0)
   })
 
-  it('runs the query provider without a runtime error', () => {
+  it('runs inside the query provider without a runtime error', () => {
     render(
       <AppProviders>
         <App />
@@ -21,7 +26,7 @@ describe('project foundation', () => {
     )
 
     expect(
-      screen.getByText('LaundryKita project foundation ready'),
+      screen.getByText('LaundryKita Design System', { exact: true }),
     ).toBeInTheDocument()
   })
 })

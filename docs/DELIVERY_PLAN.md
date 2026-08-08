@@ -39,16 +39,18 @@
 
 ## 4. Design system
 
-- **Status gate:** Belum dimulai; dependency wireframe telah terpenuhi.
+- **Status gate:** `PASSED` pada 8 Agustus 2026 melalui browser/print QA dan owner-delegated approval.
 
 - **Input:** Wireframe yang disetujui dan kebutuhan aksesibilitas/print PRD.
-- **Output:** Token, typography, spacing, color, elevation, icon rules, responsive grid, serta komponen/state inti.
+- **Output:** Token semantik, typography, spacing, color, elevation, icon rules, responsive layout, komponen/state inti, preview internal, dan receipt foundation 58/80 mm.
 - **Dependency:** Wireframe gate disetujui.
 - **Gate:** Contoh app shell, form order, table/card, production board, dialog/drawer, billing, dan print receipt disetujui.
-- **Definition of Done:** Kontras, keyboard/focus, status non-color-only, density kasir, 360 px, rupiah, dan Bahasa Indonesia tervalidasi.
+- **Definition of Done:** Kontras AA, keyboard/focus trap dan return, reduced motion, target 44 px, status non-color-only, density kasir, viewport 360/768/1440, rupiah, Bahasa Indonesia, console/overflow, serta print 58/80 mm tervalidasi; lint/typecheck/test/build/audit dependency lulus.
 - **Dilarang terlalu dini:** Implementasi feature, provider coupling, custom component tanpa kebutuhan wireframe, atau backend schema.
 
 ## 5. Frontend architecture dan app shell
+
+- **Status gate:** Belum dimulai; dependency design system telah terpenuhi.
 
 - **Input:** Design system, Screen Map, Permission Matrix, Domain Rules.
 - **Output:** App shell, pemilihan dan pemasangan router yang bebas high/critical vulnerability, routing produk, state/error boundary, localization/formatting, service contracts, mock adapter convention, fixture factory, test harness.
